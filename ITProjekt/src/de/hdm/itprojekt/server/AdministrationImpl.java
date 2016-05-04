@@ -2,11 +2,11 @@ package de.hdm.itprojekt.server;
 
 import de.hdm.itprojekt.shared.bo.*;
 
-public class AdministrationsImpl {
+public class AdministrationImpl {
 
 	public static void main(String[] args) {
 		
-		// Attribut 
+
 		private  ProfilMapper profilMapper = null;
 		
 		private  MerkzettelMapper merkzettelMapper = null;
@@ -26,10 +26,17 @@ public class AdministrationsImpl {
 		private  PartnervorschlagMapper partnervorschlagMapper  = null;
 		
 		
-		public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil, Profil)  {
+		public void init(){
 			
 		}
 		
+		public AdministrationsImpl (){
+			
+		}
+		
+		public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil, Profil)  {
+			
+		}
 		
 		public Profil getProfilNachID (int){
 			
@@ -141,11 +148,12 @@ public class AdministrationsImpl {
 		public Partnervorschlag getPartnervorschlaege (Suchprofil){
 			
 		}
+
 		
 		/*
 		 * Editorimple Methode
 		 * 
-		 * Init Methode
+
 		 * 
 		 * Login Methode
 		 * 
