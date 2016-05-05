@@ -1,10 +1,13 @@
 package de.hdm.itprojekt.client;
 
+import java.util.List;
 import java.util.Vector;
 
 import com.google.gwt.cell.client.NumberCell;
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.cellview.client.*;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.*;
 
 public class PartnervorschlagWidget extends Composite {
@@ -41,6 +44,13 @@ public class PartnervorschlagWidget extends Composite {
 		partnervorschlag.addColumn(aehnlichkeitColumn, "Ähnlichkeit");
 		
 		partnervorschlag.setRowData(0, TestProfil.getProfile());
+		com.google.gwt.dom.client.Element elt = Document.get().getElementById("content");
+		int width = elt.getOffsetWidth();
+		String w = width+"px";
+		partnervorschlag.setWidth(w);
+		
 		initWidget(partnervorschlag);
 	}
+
+	
 }

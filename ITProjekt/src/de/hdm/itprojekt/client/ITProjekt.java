@@ -105,6 +105,7 @@ public class ITProjekt implements EntryPoint {
 				// Reinigt den Bereich Content und f√ºgt das Profil hinzu
 				Label profilLabel = new Label("Die Partnervorschl‰ge:");
 				PartnervorschlagWidget pvW = new PartnervorschlagWidget();
+				
 				RootPanel.get("contentHeader").clear();
 				RootPanel.get("contentHeader").add(profilLabel);
 				RootPanel.get("content").clear();
