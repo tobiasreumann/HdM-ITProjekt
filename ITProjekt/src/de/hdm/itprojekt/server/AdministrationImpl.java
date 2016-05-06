@@ -4,6 +4,7 @@ package de.hdm.itprojekt.server;
 import java.util.Date;
 
 import de.hdm.itprojekt.shared.bo.*;
+import de.hdm.itprojekt.server.db.*;
 
 public class AdministrationImpl {
 
@@ -36,13 +37,13 @@ public class AdministrationImpl {
 			
 			this.merkzettelMapper = MerkzettelMapper.merkzettelMapper();
 			
-			this.suchprofilMapper = Suchprofilmapper.suchprofilMapper();
+			this.suchprofilMapper = SuchprofilMapper.suchprofilMapper();
 			
 			this.eigenschaftMapper = EigenschaftMapper.eigenschaftMapper();
 			
 			this.kontaktsperreMapper = KontaktsperreMapper.kontaktsperreMapper();
 			
-			this.auswahllMapper = AuswahlMapper.auswahlMapper();
+			this.auswahlMapper = AuswahlMapper.auswahlMapper();
 			
 			this.beschreibungMapper = BeschreibungMapper.beschreibungMapper();
 			
