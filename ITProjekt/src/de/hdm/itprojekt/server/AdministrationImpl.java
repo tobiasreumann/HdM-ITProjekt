@@ -4,7 +4,7 @@ package de.hdm.itprojekt.server;
 import de.hdm.itprojekt.shared.bo.*;
 
 public class AdministrationImpl {
-/*
+
 	public static void main(String[] args) {
 		
 
@@ -50,7 +50,7 @@ public class AdministrationImpl {
 		}
 
 		
-		/*
+		
 		public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil, Profil)  {
 			
 			
@@ -75,8 +75,7 @@ public class AdministrationImpl {
 		
 			
 		}
-		*/
-		/*
+		
 	public Profil profilAnlegen (String, Date, String, String boolean, String, float, String){
 			
 			Profil p = new Profil ();
@@ -91,12 +90,12 @@ public class AdministrationImpl {
 			
 		
 		
-			/*
+			
 		}
 		public void vonMerkzettelLoeschen (Profil){	
 			
 		}
-	/*
+	
 		public Kontaktsperre kontaktsperreAnlegen (Kontaktsperre){
 			
 			Kontaktsperre k = new Kontaktsperre ();
@@ -106,7 +105,7 @@ public class AdministrationImpl {
 			
 			
 		}
-*//*
+
 		public void KontaktsperreLoeschen (Profil){
 			
 		}
@@ -118,7 +117,7 @@ public class AdministrationImpl {
 			e.getBezeichnung();
 			
 		}
-		/*
+		
 		public void eigenschaftLoeschen (Auswahl, Beschreibung, Eigenschaft){
 			
 		}
@@ -129,7 +128,7 @@ public class AdministrationImpl {
 			
 		}
 		
-	/*
+	
 		//Klasse muss angelegt werden
 		 public Profil suchprofilAnlegen (String, boolean, String, int, String, int){
 			
@@ -145,7 +144,7 @@ public class AdministrationImpl {
 	
 		}
 		
-	/*
+	
 		 
 		public void profilLoeschen (Profil p)throws IllegalArgumentException{
 			
@@ -204,6 +203,7 @@ public class AdministrationImpl {
 		
 		public Partnervorschlag getPartnervorschlaege (Suchprofil){
 			
+
 		}
 
 		
@@ -218,15 +218,6 @@ public class AdministrationImpl {
 		
 		
 		
-		
-		
-		
-		
-		
-		/*
-		
-		
-		
 	}
 
-}
+
