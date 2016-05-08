@@ -28,11 +28,13 @@ public class ReportGeneratorImpl implements ReportGeneratorInterface{
 	
 	@Override
 	public Vector<Profil> erstelleNichtangesehenePartnervorschlaegeReport() throws IllegalArgumentException{
+		return null;
 		
 	}
 	
 	@Override
 	public Vector<Profil> erstellePartnervorschlaegeNachSuchprofilReport() throws IllegalArgumentException{
+		return null;
 		
 	}
 }

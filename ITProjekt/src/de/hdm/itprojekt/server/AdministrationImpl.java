@@ -30,7 +30,7 @@ public class AdministrationImpl {
 		
 		private  PartnervorschlagMapper partnervorschlagMapper  = null;
 		
-		
+	/*	
 		public void init() throws IllegalArgumentException {
 			
 			this.profilMapper = ProfilMapper.profilMapper();
@@ -50,31 +50,41 @@ public class AdministrationImpl {
 			this.aehnlichkeitsmassMapper = AehnlichkeitsmassMapper.aehnlichkeitsmassMapper();
 			
 			this.partnervorschlagMapper = PartnervorschlagMapper.PartnervorschlagMapper();
-			
+		
 		}
 
-		
+		*/
 		
 		public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil rp, Profil vp)  {
+			return null;
 			//TODO
 			
 		}
 	
 		public Profil getProfilNachID (int id){
+			return null;
 			
 		}
 	
 		public Merkzettel merkzettelAnlegen(Profil p){
 			//TODO
 			Merkzettel m = new Merkzettel ();
-			
+			return null;
 		}
-		
-		public void MerkzettelLoeschen (Profil p){
+/*		
+	public void MerkzettelLoeschen (Profil p){
 			//TODO
+			if (merkzettel  != null){
+				for (Merkzettel m : merkzettel){
+					this.MerkzettelLoeschen(p);
+					
+				}
+			}
+			this.merkzettelMapper = null;
 		}
-	
+*/	
 		public Merkzettel zuMerkzettelHinzufuegen (Profil p){
+			return null;
 			//TODO
 		
 			
@@ -92,6 +102,7 @@ public class AdministrationImpl {
 			p.setRaucher(raucher);
 			p.setReligion(religion);
 			p.setGeburtsdatum(g);
+			return null;
 				
 		}
 	
@@ -105,6 +116,7 @@ public class AdministrationImpl {
 			
 			k.getId();
 			k.getGesperrt();
+			return null;
 			
 			
 		}
@@ -118,7 +130,7 @@ public class AdministrationImpl {
 			Eigenschaft e1 = new Eigenschaft ();
 			
 			e.getBezeichnung();
-			
+			return null;
 		}
 		
 		public void eigenschaftLoeschen (Auswahl a, Beschreibung b, Eigenschaft e){
@@ -126,7 +138,7 @@ public class AdministrationImpl {
 		}
 		
 		public Beschreibung beschreibungEigenschaftBearbeiten (Eigenschaft e){
-			
+			return null;
 			//TODO
 			
 		}
@@ -136,6 +148,7 @@ public class AdministrationImpl {
 		 public Profil suchprofilAnlegen (){
 			//TODO
 			Suchprofil sp = new Suchprofil();
+			return null;
 			}
 		
 		public void suchprofilLoeschen (Suchprofil sp){
@@ -143,6 +156,7 @@ public class AdministrationImpl {
 		}
 		
 		public Profil suchprofilBearbeiten (){
+			return null;
 			//TODO
 	
 		}
@@ -155,6 +169,7 @@ public class AdministrationImpl {
 		
 		public Profil profilBearbeiten (){
 			//TODO
+			return null;
 		}
 		
 		public Info infoHinzufuegen (String wert, Auswahl a, Beschreibung b){
@@ -163,7 +178,7 @@ public class AdministrationImpl {
 			i.setWert(wert);
 	
 			//TODO
-			
+			return null;
 		}
 
 		public void infoLoeschen (Info i){
@@ -172,18 +187,23 @@ public class AdministrationImpl {
 	
 		public Info infoBearbeiten (String w, Auswahl a, Beschreibung b){
 			//TODO
+			return null;
 		}
 	
 		public Merkzettel getMerkzettelNachID (int id){
+			return null;
 			//TODO
+		
 		}
 	
 		public Kontaktsperre getKontaktsperreNachID (int id){
 			//TODO
+			return null;
 		}
 		
 		public Kontaktsperre zuKontaktsperreHinzufuegen (Profil p){
 			//TODO
+			return null;
 		}
 	
 		public void vonKontaktsperreLoeschen (Profil p){
@@ -192,20 +212,24 @@ public class AdministrationImpl {
 	
 		public Suchprofil getSuchprofilNachID (int id){
 			//TODO
+			return null;
 		}
 		
 		// in () muss String [] hinein
 		public Auswahl AuswahlEigenschaftAnlegen (Eigenschaft e){
 			//TODO
+			return null;
 		}
 		
 		// in () muss String [] hinein
 		public Auswahl AuswahlEigenschaftBearbeiten (Eigenschaft e){
 			//TODO
+			return null;
+			
 		}
 		
 		public Partnervorschlag getPartnervorschlaege (Suchprofil sp){
-			
+			return null;
 			//TODO
 		}
 
