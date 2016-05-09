@@ -9,7 +9,11 @@ import java.util.Vector;
 
 public class TestProfil {
 	private String name, geschlecht;
-	
+	private int alter;
+	private int aehnlichkeitswert;
+	private boolean raucher;
+	private int groesse;
+
 	public String getGeschlecht() {
 		return geschlecht;
 	}
@@ -34,9 +38,6 @@ public class TestProfil {
 		this.aehnlichkeitswert = aehnlichkeitswert;
 	}
 
-	private int alter;
-	private int aehnlichkeitswert;
-
 	public String getName() {
 		return name;
 	}
@@ -45,22 +46,25 @@ public class TestProfil {
 		this.name = name;
 	}
 
-	public TestProfil(String name, String geschlecht, int alter, int aehnlichkeitswert) {
+	public TestProfil(String name, String geschlecht, int alter, int aehnlichkeitswert, boolean raucher, int groesse) {
 		this.setName(name);
 		this.geschlecht = geschlecht;
 		this.alter = alter;
 		this.aehnlichkeitswert = aehnlichkeitswert;
+		this.raucher = raucher;
+		this.groesse = groesse;
 	}
 
 	public static Vector<TestProfil> getProfile() {
 		Vector<TestProfil> profile = new Vector<TestProfil>();
-		profile.add(new TestProfil("karl", "maennlich", 20, 14));
-		profile.add(new TestProfil("tom", "maennlich", 24, 50));
-		profile.add(new TestProfil("tim", "maennlich", 21, 43));
-		profile.add(new TestProfil("kaaaarl", "maennlich", 50, 77));
-		profile.add(new TestProfil("joel", "maennlich", 97, 100));
-		profile.add(new TestProfil("max", "maennlich", 15, 10));
-		profile.add(new TestProfil("goerg", "maennlich", 55, 57));
+		profile.add(new TestProfil("karl", "maennlich", 20, 14, false, 175));
+		profile.add(new TestProfil("tom", "maennlich", 24, 50, true, 182));
+		profile.add(new TestProfil("tim", "maennlich", 21, 43, true, 152));
+		profile.add(new TestProfil("kaaaarl", "maennlich", 50, 77, false, 191));
+		profile.add(new TestProfil("joel", "maennlich", 97, 100, true, 210));
+		profile.add(new TestProfil("max", "maennlich", 15, 10, false, 162));
+		profile.add(new TestProfil("goerg", "maennlich", 55, 57, true, 176));
 		return profile;
 	}
+
 }
