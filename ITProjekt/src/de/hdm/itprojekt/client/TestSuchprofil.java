@@ -5,7 +5,7 @@ import java.util.Vector;
 public class TestSuchprofil {
 	private int alterMin;
 	private int alterMax;
-	private int groeﬂe;
+	private int groesse;
 	private String haarfarbe;
 	private boolean raucher;
 	private String geschlecht;
