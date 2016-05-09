@@ -7,6 +7,7 @@ import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.cellview.client.*;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.*;
 
 public class PartnervorschlagWidget extends Composite {
@@ -73,6 +74,7 @@ public class PartnervorschlagWidget extends Composite {
 		 * TODO: Clickhandler zu Tabellenzeilen hinzufügen um das jeweilige
 		 * Nutzerprofil anzuzeigen.
 		 */
+
 
 	}
 
