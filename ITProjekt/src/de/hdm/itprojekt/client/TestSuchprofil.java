@@ -5,7 +5,7 @@ import java.util.Vector;
 public class TestSuchprofil {
 	private int alterMin;
 	private int alterMax;
-	private int groeﬂe;
+	private int groesse;
 	private String haarfarbe;
 	private boolean raucher;
 	private String geschlecht;
@@ -20,5 +20,9 @@ public class TestSuchprofil {
 	public void setSuchprofile(Vector<TestSuchprofil> suchprofile) {
 		this.suchprofile = suchprofile;
 	}
-	
+	 public TestSuchprofil(){
+		 
+	 }
 }
+	
+

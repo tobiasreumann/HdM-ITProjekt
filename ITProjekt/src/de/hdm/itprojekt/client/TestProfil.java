@@ -13,6 +13,7 @@ public class TestProfil {
 	private int aehnlichkeitswert;
 	private boolean raucher;
 	private int groesse;
+	
 
 	public String getGeschlecht() {
 		return geschlecht;
