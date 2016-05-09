@@ -92,7 +92,7 @@ private DialogBox createDiBox(){
 	buttonPanel.add(closeButton);
 	hizuPanel.add(buttonPanel);	
 
-	dialogBox.add(hizuPanel);		
+	dialogBox.add(hizuPanel);	
 		
 	return dialogBox;
 }
@@ -145,24 +145,26 @@ private DialogBox createDpBox(){
 
 
 
-
-
 //Erstellen der DialogBoxen
 	DialogBox dpBox = createDpBox();
-	DialogBox dialogBox = createDiBox();	
+	DialogBox dialogBox = createDiBox();
 	
 	
-	public void reloadDialogBoxen(){
-		
-		DialogBox newDpBox = new DialogBox();
-		DialogBox newDiBox = new DialogBox();
-		
-		newDpBox = createDpBox();
-		newDiBox = createDiBox();
+	
+	
+	
+//	public void reloadDialogBoxen(){
+//		
+//		DialogBox newDpBox = new DialogBox();
+//		DialogBox newDiBox = new DialogBox();
+//		
+//		newDpBox = createDpBox();
+//		newDiBox = createDiBox();
+//
+//		this.dialogBox = newDiBox;
+//		this.dpBox = newDpBox;
+//	}		
 
-		this.dialogBox = newDiBox;
-		this.dpBox = newDpBox;
-	}		
 
 //-----------------------------------------------------------------
 //Konstruktor zum erzeugen des Info- Widget!
@@ -170,6 +172,7 @@ private DialogBox createDpBox(){
 	
 	public InfoWidget(){
 	
+
 		
 /**
 * CLICK_HANDLER: Button der die DialogBox zum erstellen einer neuen Eigenschaft aufruft
@@ -179,7 +182,7 @@ private DialogBox createDpBox(){
 		addRowButton.addClickHandler(new ClickHandler(){
 		public void onClick(ClickEvent event) {						
 		
-
+		dialogBox = createDiBox();	
 		dialogBox.setGlassEnabled(true);
 		dialogBox.setAnimationEnabled(true);	
 		dialogBox.center();
@@ -193,9 +196,11 @@ private DialogBox createDpBox(){
 */		
 									
 		closeButton.addClickHandler(new ClickHandler(){
-		public void onClick(ClickEvent event) {
-											
+		public void onClick(ClickEvent event) {	
+	
 		dialogBox.hide();
+		//dialogBox = loeschenBox;
+		
 		} 							
 	}); 		
 		   	
