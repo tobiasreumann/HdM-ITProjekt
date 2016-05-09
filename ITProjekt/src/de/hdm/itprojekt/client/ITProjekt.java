@@ -26,16 +26,15 @@ import com.google.gwt.user.client.ui.Widget;
 public class ITProjekt implements EntryPoint {
 
 	/**
-	 * Create a remote service proxy to talk to the server-side Greeting service.
+	 * Create a remote service proxy to talk to the server-side Greeting
+	 * service.
 	 */
-	private final GreetingServiceAsync greetingService = GWT
-			.create(GreetingService.class);
+	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
-	
 	/**
 	 * Menüleiste wird als Widget erstellt.
 	 */
-	
+
 	VerticalPanel menuPanel = new VerticalPanel();
 
 	Button profilButton = new Button("Profil");
@@ -43,88 +42,94 @@ public class ITProjekt implements EntryPoint {
 	Button homeButton = new Button("Startseite");
 	Button merkButton = new Button("Merkliste");
 	Button sperrButton = new Button("Sperrliste");
-	
-	
-		public Widget menuWidget(){
-							
-			menuPanel.add(homeButton);
-			menuPanel.add(profilButton);
-			menuPanel.add(sprofilButton);
-			menuPanel.add(merkButton);
-			menuPanel.add(sperrButton);
-				
-				
-			// Abstand zwischen den einzelnen Buttons
-			menuPanel.setSpacing(20);
-				
-			//Layout Button
-			profilButton.setPixelSize(200, 40);
-			sprofilButton.setPixelSize(200, 40);
-			homeButton.setPixelSize(200, 40);
-			merkButton.setPixelSize(200, 40);
-			sperrButton.setPixelSize(200, 40);
-		
-			
-			return menuPanel;
-			}
-	
-	
-	
+
+	public Widget menuWidget() {
+
+		menuPanel.add(homeButton);
+		menuPanel.add(profilButton);
+		menuPanel.add(sprofilButton);
+		menuPanel.add(merkButton);
+		menuPanel.add(sperrButton);
+
+		// Abstand zwischen den einzelnen Buttons
+		menuPanel.setSpacing(20);
+
+		// Layout Button
+		profilButton.setPixelSize(200, 40);
+		sprofilButton.setPixelSize(200, 40);
+		homeButton.setPixelSize(200, 40);
+		merkButton.setPixelSize(200, 40);
+		sperrButton.setPixelSize(200, 40);
+
+		return menuPanel;
+	}
+
 	/**
 	 * This is the entry point method.
 	 */
 
 	public void onModuleLoad() {
-		
-		//Fügt die Menüleiste hinzu
+
+		// Fügt die Menüleiste hinzu
 		VerticalPanel hpanel = new VerticalPanel();
 		RootPanel.get("nav").add(hpanel);
 		hpanel.add(menuWidget());
-		
-	
-		
-	/**
-	 * ClickHandler für den Profil-Button!	
-	 */
-		profilButton.addClickHandler(new ClickHandler(){
+
+		/**
+		 * ClickHandler für den Profil-Button!
+		 */
+		profilButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 
-				//Reinigt den Bereich Content und fügt das Profil hinzu
+				// Reinigt den Bereich Content und fügt das Profil hinzu
 				Label profilLabel = new Label("Dein Profil:");
 				HorizontalPanel hpPanel = new HorizontalPanel();
 				hpPanel.setSpacing(30);
-				
+
 				RootPanel.get("contentHeader").clear();
 				RootPanel.get("contentHeader").add(profilLabel);
-				
+
 				RootPanel.get("content").clear();
 				hpPanel.add(new ProfilWidget());
 				hpPanel.add(new InfoWidget());
 				RootPanel.get("content").add(hpPanel);
-				
-
-
 			}
 		});
-		
-	/**
-	* ClickHandler für den Startseite-Button!	
-	*/
-		homeButton.addClickHandler(new ClickHandler(){
+		/**
+		 * ClickHandler für den Suchprofil-Button! Testweise wird an dieser
+		 * Stelle die Tabelle mit der Darstellung der Parnervorschl�ge erzeugt.
+		 */
+		sprofilButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-					
-				Label startseiteLabel = new Label("Willkommen auf HoesForBros, dein Partner für die Partnersuche.");
+
+				// Reinigt den Bereich Content und fügt das Profil hinzu
+				Label profilLabel = new Label("Die Partnervorschl�ge:");
+				PartnervorschlagWidget pvW = new PartnervorschlagWidget();
 				
 				RootPanel.get("contentHeader").clear();
-				RootPanel.get("contentHeader").add(startseiteLabel);
-				
+				RootPanel.get("contentHeader").add(profilLabel);
 				RootPanel.get("content").clear();
-				RootPanel.get("content").add(new StartseiteWidget());
-						
+				RootPanel.get("content").add(pvW);
+
 			}
 		});
-		
-		
-		
+
+		/**
+		 * ClickHandler für den Startseite-Button!
+		 */
+		homeButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+
+				Label startseiteLabel = new Label("Willkommen auf HoesForBros, dein Partner für die Partnersuche.");
+
+				RootPanel.get("contentHeader").clear();
+				RootPanel.get("contentHeader").add(startseiteLabel);
+
+				RootPanel.get("content").clear();
+				RootPanel.get("content").add(new StartseiteWidget());
+
+			}
+		});
+
 	}
 }

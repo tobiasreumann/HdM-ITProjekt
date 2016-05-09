@@ -9,7 +9,7 @@ public class StartseiteWidget extends Composite{
 	VerticalPanel startPanel = new VerticalPanel();
 	Label satz1 = new Label("Du suchst eine Hoe oder einen Bro?");
 	Label satz2 = new Label("Jede Sekunde verliebt sich eine Hoe in einen Bro!");
-	Label satz3 = new Label("Lege jetzt los, denn F***** werden feucht bei HoesForBros!");
+	Label satz3 = new Label("Lege jetzt los!");
 	
 	
 	
