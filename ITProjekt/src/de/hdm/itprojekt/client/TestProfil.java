@@ -12,9 +12,8 @@ public class TestProfil {
 	private int alter;
 	private int aehnlichkeitswert;
 	private boolean raucher;
-	private int groeﬂe;
-	
-	
+	private int groesse;
+
 	public String getGeschlecht() {
 		return geschlecht;
 	}
@@ -39,7 +38,6 @@ public class TestProfil {
 		this.aehnlichkeitswert = aehnlichkeitswert;
 	}
 
-
 	public String getName() {
 		return name;
 	}
@@ -48,13 +46,13 @@ public class TestProfil {
 		this.name = name;
 	}
 
-	public TestProfil(String name, String geschlecht, int alter, int aehnlichkeitswert, boolean raucher, int groeﬂe) {
+	public TestProfil(String name, String geschlecht, int alter, int aehnlichkeitswert, boolean raucher, int groesse) {
 		this.setName(name);
 		this.geschlecht = geschlecht;
 		this.alter = alter;
 		this.aehnlichkeitswert = aehnlichkeitswert;
-		this.raucher=raucher;
-		this.groeﬂe=groeﬂe;
+		this.raucher = raucher;
+		this.groesse = groesse;
 	}
 
 	public static Vector<TestProfil> getProfile() {
@@ -68,7 +66,5 @@ public class TestProfil {
 		profile.add(new TestProfil("goerg", "maennlich", 55, 57, true, 176));
 		return profile;
 	}
-	
-	
-	
+
 }
