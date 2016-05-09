@@ -10,6 +10,7 @@ import java.util.Vector;
 public class TestProfil {
 	private String name, geschlecht;
 	
+	
 	public String getGeschlecht() {
 		return geschlecht;
 	}

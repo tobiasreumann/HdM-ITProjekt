@@ -146,8 +146,7 @@ private DialogBox createDpBox(){
 
 
 //Erstellen der DialogBoxen
-	DialogBox dpBox = createDpBox();
-	DialogBox dialogBox = createDiBox();
+
 	
 	
 	
@@ -172,6 +171,8 @@ private DialogBox createDpBox(){
 	
 	public InfoWidget(){
 	
+		final DialogBox dpBox = createDpBox();
+		final DialogBox dialogBox = createDiBox();
 
 		
 /**
@@ -181,8 +182,7 @@ private DialogBox createDpBox(){
 		Button addRowButton = new Button("Eigenschaft hinzufügen");
 		addRowButton.addClickHandler(new ClickHandler(){
 		public void onClick(ClickEvent event) {						
-		
-		dialogBox = createDiBox();	
+			
 		dialogBox.setGlassEnabled(true);
 		dialogBox.setAnimationEnabled(true);	
 		dialogBox.center();
@@ -199,7 +199,6 @@ private DialogBox createDpBox(){
 		public void onClick(ClickEvent event) {	
 	
 		dialogBox.hide();
-		//dialogBox = loeschenBox;
 		
 		} 							
 	}); 		
