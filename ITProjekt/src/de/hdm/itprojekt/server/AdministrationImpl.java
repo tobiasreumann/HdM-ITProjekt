@@ -30,7 +30,7 @@ public class AdministrationImpl {
 		
 		private  PartnervorschlagMapper partnervorschlagMapper  = null;
 		
-	/*
+
 		public void init() throws IllegalArgumentException {
 			
 			this.profilMapper = ProfilMapper.profilMapper();
@@ -53,7 +53,7 @@ public class AdministrationImpl {
 		
 		}
 
-		*/
+		
 		
 		//TODO
 		public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil rp, Profil vp)  {
@@ -157,6 +157,7 @@ public class AdministrationImpl {
 		}
 		*/
 		//TODO
+		
 		 public Profil suchprofilAnlegen (){
 			Suchprofil sp = new Suchprofil();
 			return this.profilMapper.insert (sp);

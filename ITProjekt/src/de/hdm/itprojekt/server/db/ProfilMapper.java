@@ -5,7 +5,7 @@ import de.hdm.itprojekt.shared.bo.Suchprofil;
 
 public class ProfilMapper {
 
-	public Profil insert(Suchprofil sp) {
+	public Profil insert(Profil p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
