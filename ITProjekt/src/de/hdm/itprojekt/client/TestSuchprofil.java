@@ -12,7 +12,7 @@ public class TestSuchprofil {
 	private String geschlechtAuswahl;
 	private boolean raucherAuswahl;
 	private String raucherEgal;
-	private Vector<TestSuchprofil> suchprofile;
+	private Vector<TestSuchprofil> suchprofile= new Vector<TestSuchprofil>();
 
 	public String getRaucherEgal() {
 		return raucherEgal;

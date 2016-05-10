@@ -14,7 +14,6 @@ public class TestProfil {
 	private boolean raucher;
 	private int groesse;
 	private String haarfarbe;
-	
 
 	public boolean isRaucher() {
 		return raucher;
