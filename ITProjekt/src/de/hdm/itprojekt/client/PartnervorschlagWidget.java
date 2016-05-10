@@ -70,9 +70,12 @@ public class PartnervorschlagWidget extends Composite {
 
 		initWidget(partnervorschlag);
 
-		/**
+		
+		/**------------------------------------------------------------------
 		 * TODO: Clickhandler zu Tabellenzeilen hinzufügen um das jeweilige
 		 * Nutzerprofil anzuzeigen.
+		 * 
+		 * TODO: Tabelle scrollbar machen.
 		 */
 
 

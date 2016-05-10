@@ -13,7 +13,32 @@ public class TestProfil {
 	private int aehnlichkeitswert;
 	private boolean raucher;
 	private int groesse;
+	private String haarfarbe;
 	
+
+	public boolean isRaucher() {
+		return raucher;
+	}
+
+	public void setRaucher(boolean raucher) {
+		this.raucher = raucher;
+	}
+
+	public int getGroesse() {
+		return groesse;
+	}
+
+	public void setGroesse(int groesse) {
+		this.groesse = groesse;
+	}
+
+	public String getHaarfarbe() {
+		return haarfarbe;
+	}
+
+	public void setHaarfarbe(String haarfarbe) {
+		this.haarfarbe = haarfarbe;
+	}
 
 	public String getGeschlecht() {
 		return geschlecht;
