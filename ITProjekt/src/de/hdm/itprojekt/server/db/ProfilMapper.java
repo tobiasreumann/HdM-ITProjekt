@@ -15,10 +15,19 @@ public class ProfilMapper {
 			profilMapper = new ProfilMapper();
 		}
 		return profilMapper;
+	}
 
 	public Profil insert(Profil p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//TODO getByID(id)
+	
+	//TODO loeschen()
+	
+	//TODO bearbeiten()
+	
+	//TODO Vector<Profil> getProfile()
 
 }

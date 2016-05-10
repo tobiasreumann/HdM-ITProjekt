@@ -10,9 +10,14 @@ public class KontaktsperreMapper {
 		return null;
 	}
 
-	public void KontaktsperreLoeschen(Profil p) {
+	public void kontaktsperreLoeschen(Profil p) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	//TODO getByID(id)
+	
+	//TODO hinzufuegen()
+	
+	//TODO entfernen()
 }

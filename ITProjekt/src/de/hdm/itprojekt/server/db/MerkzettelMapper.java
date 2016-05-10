@@ -6,13 +6,19 @@ import de.hdm.itprojekt.shared.bo.Profil;
 public class MerkzettelMapper {
 
 	public Merkzettel insert(Profil p) {
-		// TODO Auto-generated method stub
+		// TODO SQL Stmt um Merkzettel in die DB zu speichern
 		return null;
 	}
 
-	public void vonMerkzettelLoeschen(Merkzettel m) {
-		// TODO Auto-generated method stub
+	public void vonMerkzettelLoeschen(Profil p) {
+		// TODO SQL Stmt um Profil von Merkzettel zu entfernen
 		
 	}
+	
+	//TODO Methode hinzufuegen(Profil p) um ein Profil einem Merkzettel hinzuzufuegen
+	
+	//TODO Methode loeschen(Merkzettel m)
+	
+	//TODO getByID(id)
 
 }

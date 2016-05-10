@@ -66,7 +66,7 @@ public class AdministrationImpl {
 		}
 
 		public Merkzettel merkzettelAnlegen(Profil p){
-			
+			//TODO
 			Merkzettel m = new Merkzettel ();			
 			// vorläufige ID
 			m.setId(1);
@@ -77,7 +77,7 @@ public class AdministrationImpl {
 
 		
 //TODO	
-	public void MerkzettelLoeschen (Profil rp){	
+	public void MerkzettelLoeschen (Merkzettel m){	
 		}
 		
 		//TODO
@@ -111,14 +111,14 @@ public class AdministrationImpl {
 				
 		}
 		
-		public void vonMerkzettelLoeschen (Merkzettel m) {	
-			this.merkzettelMapper.vonMerkzettelLoeschen (m);
+		public void vonMerkzettelLoeschen (Profil p) {	
+			this.merkzettelMapper.vonMerkzettelLoeschen (p);
 		}
 	
 		
 		//Fertig
 		public Kontaktsperre kontaktsperreAnlegen (Kontaktsperre k){
-			
+			//TODO
 			Kontaktsperre k1 = new Kontaktsperre ();
 			
 			k.setId(1);
@@ -129,8 +129,8 @@ public class AdministrationImpl {
 		}
 	
 		//Fertig
-		public void KontaktsperreLoeschen (Profil p){
-			this.kontaktsperreMapper.KontaktsperreLoeschen (p);
+		public void kontaktsperreLoeschen (Profil p){
+			this.kontaktsperreMapper.kontaktsperreLoeschen (p);
 
 		}
 		//Fertig
@@ -145,15 +145,12 @@ public class AdministrationImpl {
 		public void eigenschaftLoeschen (Auswahl a, Beschreibung b, Eigenschaft e){
 			//TODO
 		}
-		/*
-		 * JOEL
+		
 		public Beschreibung beschreibungEigenschaftBearbeiten (Eigenschaft e){
 			return null;
 			//TODO
 			
 		}
-		*/
-		//TODO
 		
 		 public Profil suchprofilAnlegen (){
 			Suchprofil sp = new Suchprofil();
