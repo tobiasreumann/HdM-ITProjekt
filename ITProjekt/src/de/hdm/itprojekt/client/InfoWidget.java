@@ -1,5 +1,7 @@
 package de.hdm.itprojekt.client;
 
+import java.util.Vector;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
@@ -12,14 +14,14 @@ public class InfoWidget extends Composite{
 //Sonstige	
 //-----------------------------------------------------------------------	
 	
-	VerticalPanel infoWidgetPanel = new VerticalPanel();	
-	ListBox auswahlBox = new ListBox();
+	private VerticalPanel infoWidgetPanel = new VerticalPanel();	
+	private ListBox auswahlBox = new ListBox();
 
 //-----------------------------------------------------------------------
 //FlexTable erstellen
 //-----------------------------------------------------------------------
 	
-	final FlexTable infoTable = new FlexTable();
+	private FlexTable infoTable = new FlexTable();
 
 
 
@@ -55,11 +57,10 @@ public class InfoWidget extends Composite{
 
 
 
-Label header = new Label("Füge eine neue Eigenschaft hinzu: ");	
-TextBox newEigenschaftBox = new TextBox();
-TextBox einzufuegendeBox = new TextBox();
-Button esButton = new Button("Eigenschaft speichern");
-Button closeButton = new Button("Schließen");
+private Label header = new Label("Füge eine neue Eigenschaft hinzu: ");	
+private TextBox newEigenschaftBox = new TextBox();
+private Button esButton = new Button("Eigenschaft speichern");
+private Button closeButton = new Button("Schließen");
 
 
 private DialogBox createDiBox(){
@@ -105,19 +106,19 @@ private DialogBox createDiBox(){
 //-----------------------------------------------------------------
 
 //Für DropDown-Feld
-	Label dpLabel = new Label("Bitte geben Sie die Auswahloptionen an: ");
-	TextBox dp1Box = new TextBox();
-	TextBox dp2Box = new TextBox();
-	TextBox dp3Box = new TextBox();
-	TextBox dp4Box = new TextBox();
-	TextBox dp5Box = new TextBox();
-	TextBox dp6Box = new TextBox();
-	TextBox dp7Box = new TextBox();
-	TextBox dp8Box = new TextBox();
-	VerticalPanel dpPanel = new VerticalPanel();
-	HorizontalPanel dpButtonPanel = new HorizontalPanel();
-	Button dpCloseButton = new Button("Schließen");
-	Button dpSaveButton = new Button("Speichern");	
+	private Label dpLabel = new Label("Bitte geben Sie die Auswahloptionen an: ");
+	private TextBox dp1Box = new TextBox();
+	private TextBox dp2Box = new TextBox();
+	private TextBox dp3Box = new TextBox();
+	private TextBox dp4Box = new TextBox();
+	private TextBox dp5Box = new TextBox();
+	private TextBox dp6Box = new TextBox();
+	private TextBox dp7Box = new TextBox();
+	private TextBox dp8Box = new TextBox();
+	private VerticalPanel dpPanel = new VerticalPanel();
+	private HorizontalPanel dpButtonPanel = new HorizontalPanel();
+	private Button dpCloseButton = new Button("Schließen");
+	private Button dpSaveButton = new Button("Speichern");	
 
 
 
@@ -165,14 +166,24 @@ private DialogBox createDpBox(){
 //	}		
 
 
+
+//Neue Instanz einer Info erstellen		
+		private TestInfo neueInfo = new TestInfo();
+
+	
+		
 //-----------------------------------------------------------------
 //Konstruktor zum erzeugen des Info- Widget!
 //-----------------------------------------------------------------
 	
 	public InfoWidget(){
 	
+// erstellen der DialogBoxen
 		final DialogBox dpBox = createDpBox();
 		final DialogBox dialogBox = createDiBox();
+		
+		
+
 
 		
 /**
@@ -216,10 +227,19 @@ private DialogBox createDpBox(){
 		if(auswahlBox.getValue(auswahlBox.getSelectedIndex()).equals("Eingabefeld") ){
 		
 			TextBox uebergabeBox = new TextBox();
-			uebergabeBox.setTitle(newEigenschaftBox.getValue());
+			// Erzeugt eine neue Eigenschaft und setzt deren Bezeichnung
+			TestBeschreibungseigenschaft neueEigenschaft = new TestBeschreibungseigenschaft(newEigenschaftBox.getValue());
+			uebergabeBox.setTitle(neueEigenschaft.getBezeichnung());
 			
+			//Die Übergebene Eigenschaft wird in einem Vector gespeichert
+			Vector<TestEigenschaft> eig = neueInfo.getEigenschaften();
+			eig.add(neueEigenschaft);
+			neueInfo.setEigenschaften(eig);	
 			
 		addRow(infoTable, uebergabeBox , newEigenschaftBox.getValue());
+		
+
+		
 		dialogBox.hide();
 						
 		// Wenn "DropDown-Feld" angegeben ist wird eine neue DialogBox angezeigt. 
@@ -257,13 +277,17 @@ private DialogBox createDpBox(){
 											dp6Box.getValue(), dp7Box.getValue(),dp8Box.getValue()};
 									
 		ListBox uebergabeBox = new ListBox();
-		uebergabeBox.setTitle(newEigenschaftBox.getValue());
+		
+		//Erzeugen einer neuen Auswahleigenschaft
+		TestAuswahleigenschaft neueAuswahleigenschaft = new TestAuswahleigenschaft(auswahlOptionen, newEigenschaftBox.getValue());
+		uebergabeBox.setTitle(neueAuswahleigenschaft.getBezeichnung());
+		
 									
 		// Schleife die die übergebenen Auswahloptionen in eine ListBox schreibt und übergibt.
 									
-		for(int i=0; i<auswahlOptionen.length; i++){
-			if(!auswahlOptionen[i].equals("")){
-				uebergabeBox.addItem(auswahlOptionen[i]);
+		for(int i=0; i< neueAuswahleigenschaft.getAuswahl().length; i++){
+			if(!neueAuswahleigenschaft.getAuswahl()[i].equals("")){
+				uebergabeBox.addItem(neueAuswahleigenschaft.getAuswahl()[i]);
 				} 									
 			}
 									
@@ -289,7 +313,19 @@ private DialogBox createDpBox(){
 		public void onClick(ClickEvent event) {
 		removeRow(infoTable);							
 		}
-	});			        
+	});	
+		
+		// Button zum speichern der Infos von Beschreibungs- oder Auswahlfeldern 
+		Button speichernButton = new Button("Speichern");
+		speichernButton.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				// TODO: INFOS ERZEUGEN UND ABSPEICHERN
+			
+				for(int i=0; i< neueInfo.getEigenschaften().capacity(); i++){
+					System.out.println(neueInfo.getEigenschaften().elementAt(i).getBezeichnung());
+				}
+		}
+	});
 			  
 			       		   
 			        
@@ -297,7 +333,8 @@ private DialogBox createDpBox(){
 		VerticalPanel buttonPanel = new VerticalPanel();
 		buttonPanel.setSpacing(5);
 		buttonPanel.add(addRowButton);
-		buttonPanel.add(removeRowButton);  
+		buttonPanel.add(removeRowButton);
+		buttonPanel.add(speichernButton);
 		
 		// Die FlexTable "infoTabel" wird hier formatiert
 		FlexCellFormatter cellFormatter = infoTable.getFlexCellFormatter();
