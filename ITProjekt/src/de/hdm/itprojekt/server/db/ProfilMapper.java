@@ -17,7 +17,23 @@ public class ProfilMapper {
 		return profilMapper;
 	}
 
-	public Profil insert(Profil p) {
+
+	public Profil getByID(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Profil anlegen(Profil p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void loeschen(Profil p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Profil bearbeiten() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -85,7 +85,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			// vorläufige ID
 			m.setId(1);
 			
-			return this.merkzettelMapper.insert (p);
+			return this.merkzettelMapper.anlegen (p);
 			 
 		}
 
@@ -98,7 +98,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		
 		@Override
 		public Merkzettel zuMerkzettelHinzufuegen (Profil rp) throws IllegalArgumentException{
-			return this.merkzettelMapper.insert (rp);
+			return this.merkzettelMapper.hinzufuegen (rp);
 		//TODO
 			
 		}
@@ -123,14 +123,14 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			// vorläufige ID gesetzt
 			p.setId(1);
 			
-			return this.profilMapper.insert (p);
+			return this.profilMapper.anlegen (p);
 			 
 				
 		}
 		
 		@Override
 		public void vonMerkzettelLoeschen (Profil p) throws IllegalArgumentException{	
-			this.merkzettelMapper.vonMerkzettelLoeschen (p);
+			this.merkzettelMapper.entfernen (p);
 		}
 	
 		
@@ -141,14 +141,14 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			
 			k.setId(1);
 			k.getGesperrt();
-			return this.kontaktsperreMapper.insert(k);
+			return this.kontaktsperreMapper.anlegen(k);
 			
 			
 		}
 	
 		@Override
 		public void kontaktsperreLoeschen (Profil p) throws IllegalArgumentException{
-			this.kontaktsperreMapper.kontaktsperreLoeschen (p);
+			this.kontaktsperreMapper.loeschen (p);
 
 		}
 		
@@ -158,7 +158,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			Eigenschaft e1 = new Eigenschaft ();
 			
 			e.getBezeichnung();
-			return this.eigenschaftMapper.insert;
+			return this.beschreibungMapper.anlegen();
 		}
 		
 		@Override
@@ -169,7 +169,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		
 		@Override
 		public Beschreibung beschreibungEigenschaftBearbeiten (Eigenschaft e) throws IllegalArgumentException{
-			return this.eigenschaftMapper.bearbeiten(e);
+			return this.beschreibungMapper.bearbeiten(e);
 			//TODO
 			
 		}
@@ -177,7 +177,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		@Override
 		public Profil suchprofilAnlegen () throws IllegalArgumentException{
 			Suchprofil sp = new Suchprofil();
-			return this.profilMapper.insert (sp);
+			return this.suchprofilMapper.anlegen (sp);
 
 		}
 		
