@@ -1,5 +1,8 @@
 package de.hdm.itprojekt.server.db;
 
+import de.hdm.itprojekt.shared.bo.Profil;
+import de.hdm.itprojekt.shared.bo.Suchprofil;
+
 public class ProfilMapper {
 
 	private static ProfilMapper profilMapper = null;
@@ -12,6 +15,10 @@ public class ProfilMapper {
 			profilMapper = new ProfilMapper();
 		}
 		return profilMapper;
+
+	public Profil insert(Profil p) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
