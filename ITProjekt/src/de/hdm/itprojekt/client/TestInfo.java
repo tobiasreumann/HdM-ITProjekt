@@ -4,13 +4,12 @@ public class TestInfo {
 
 	String beschreibung;
 	
-	String getBeschreibung(){
+	public String getBeschreibung(){
 		return beschreibung;	
 	}
 	
-	String setBeschreibung(String b){
-		this.beschreibung = b;
-		return beschreibung;	
+	public void setBeschreibung(String b){
+		this.beschreibung = b;	
 	}
 	
 	

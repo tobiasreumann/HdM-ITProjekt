@@ -318,8 +318,7 @@ private DialogBox createDpBox(){
 		infoWidgetPanel.add(infoTable);
 		
 		// Alle einzelnen Widgets im Panel "infoWidgetPanel" werden nun als ein Widget initialisiert
-	    initWidget(infoWidgetPanel);
-	      				
+	    initWidget(infoWidgetPanel);	      				
 	}
 	
 }
