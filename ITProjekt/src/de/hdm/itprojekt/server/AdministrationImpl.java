@@ -77,7 +77,8 @@ public class AdministrationImpl {
 
 		
 //TODO	
-	public void MerkzettelLoeschen (Merkzettel m){	
+	public void MerkzettelLoeschen (Merkzettel m){
+			this.merkzettelMapper.loeschen(m);
 		}
 		
 		//TODO
@@ -144,10 +145,11 @@ public class AdministrationImpl {
 		
 		public void eigenschaftLoeschen (Auswahl a, Beschreibung b, Eigenschaft e){
 			//TODO
+			this.eigenschaftMapper.loeschen();
 		}
 		
 		public Beschreibung beschreibungEigenschaftBearbeiten (Eigenschaft e){
-			return null;
+			return this.eigenschaftMapper.bearbeiten(e);
 			//TODO
 			
 		}
@@ -160,11 +162,12 @@ public class AdministrationImpl {
 		
 		public void suchprofilLoeschen (Suchprofil sp){
 			//TODO
+			this.suchprofilMapper.loeschen(sp);
 		}
 		
 		//TODO
 		public Profil suchprofilBearbeiten (){
-			return null;
+			return this.suchprofilMapper.bearbeiten();
 			
 	
 		}
@@ -173,11 +176,12 @@ public class AdministrationImpl {
 		 
 		public void profilLoeschen (Profil p)throws IllegalArgumentException {
 			//TODO
+			this.profilMapper.loeschen(p);
 		}
 		
 		public Profil profilBearbeiten (){
 			//TODO
-			return null;
+			return this.profilMapper.bearbeiten();
 		}
 		
 		//TODO
