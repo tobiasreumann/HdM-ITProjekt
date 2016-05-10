@@ -3,14 +3,14 @@ package de.hdm.itprojekt.server;
 
 import java.util.Date;
 
-import de.hdm.itprojekt.shared.AdministrationInterface;
+import de.hdm.itprojekt.shared.Administration;
 import de.hdm.itprojekt.shared.bo.*;
 import de.hdm.itprojekt.server.db.*;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 @SuppressWarnings("serial")
-public class AdministrationImpl extends RemoteServiceServlet implements AdministrationInterface{
+public class AdministrationImpl extends RemoteServiceServlet implements Administration{
 
 	
 		public static void main(String[] args) {

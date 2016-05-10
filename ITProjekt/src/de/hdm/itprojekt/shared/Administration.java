@@ -8,7 +8,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 
 @RemoteServiceRelativePath("Administration")
-public interface AdministrationInterface {
+public interface Administration extends RemoteService{
 
 	public void init();
 
