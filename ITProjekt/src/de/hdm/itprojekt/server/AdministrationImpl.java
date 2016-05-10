@@ -30,7 +30,7 @@ public class AdministrationImpl {
 		
 		private  PartnervorschlagMapper partnervorschlagMapper  = null;
 		
-	/*	
+		
 		public void init() throws IllegalArgumentException {
 			
 			this.profilMapper = ProfilMapper.profilMapper();
@@ -53,7 +53,7 @@ public class AdministrationImpl {
 		
 		}
 
-		*/
+		
 		
 		public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil rp, Profil vp)  {
 			return null;
@@ -62,7 +62,7 @@ public class AdministrationImpl {
 		}
 	
 		public Profil getProfilNachID (int id){
-			return null;
+			return this.profilMapper.getByID(id);
 			
 		}
 	
