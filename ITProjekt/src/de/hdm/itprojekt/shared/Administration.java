@@ -3,10 +3,12 @@ package de.hdm.itprojekt.shared;
 import java.util.Date;
 
 import de.hdm.itprojekt.shared.bo.*;
+import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 
-
-public interface AdministrationInterface {
+@RemoteServiceRelativePath("Administration")
+public interface Administration extends RemoteService{
 
 	public void init();
 
@@ -16,7 +18,7 @@ public interface AdministrationInterface {
 
 	public Merkzettel merkzettelAnlegen(Profil p);
 	
-	public void MerkzettelLoeschen (Profil p);
+	public void merkzettelLoeschen (Merkzettel m);
 
 	public Merkzettel zuMerkzettelHinzufuegen (Profil p);
 	
@@ -26,7 +28,7 @@ public interface AdministrationInterface {
 
 	public Kontaktsperre kontaktsperreAnlegen (Kontaktsperre k);
 
-	public void KontaktsperreLoeschen (Profil p);
+	public void kontaktsperreLoeschen (Profil p);
 	
 	public Beschreibung beschreibungEigenschaftAnlegen (Eigenschaft e);
 	
