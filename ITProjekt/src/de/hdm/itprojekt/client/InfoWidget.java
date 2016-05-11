@@ -167,8 +167,10 @@ private DialogBox createDpBox(){
 
 
 
-//Neue Instanz einer Info erstellen		
-		private TestInfo neueInfo = new TestInfo();
+
+		
+
+		
 
 	
 		
@@ -182,8 +184,19 @@ private DialogBox createDpBox(){
 		final DialogBox dpBox = createDpBox();
 		final DialogBox dialogBox = createDiBox();
 		
+// TEST: PROFIL ANLEGEN UM DARIN INFOS ZU SPEICHERN
+		final TestProfil neuesProfil= new TestProfil("tobra", "maennlich", 28, 14, false, 175);		
 		
-
+		
+// erstellen einer neuen Instanz von Info
+		final TestInfo setInfo= new TestInfo();
+		
+//Neue Instanz einer Info erstellen		
+		final TestInfo neueInfo = new TestInfo();
+		
+//Neue Vectoren zum speichern der erzeugten Boxen
+		final Vector<TextBox> textBoxen = new Vector<TextBox>();
+		final Vector<ListBox> listBoxen = new Vector<ListBox>();		
 
 		
 /**
@@ -230,6 +243,10 @@ private DialogBox createDpBox(){
 			// Erzeugt eine neue Eigenschaft und setzt deren Bezeichnung
 			TestBeschreibungseigenschaft neueEigenschaft = new TestBeschreibungseigenschaft(newEigenschaftBox.getValue());
 			uebergabeBox.setTitle(neueEigenschaft.getBezeichnung());
+			
+			//Hinzufügen der TextBox in den Vector boxen
+			textBoxen.add(uebergabeBox);
+			
 			
 			//Die Übergebene Eigenschaft wird in einem Vector gespeichert
 			Vector<TestEigenschaft> eig = neueInfo.getEigenschaften();
@@ -290,7 +307,10 @@ private DialogBox createDpBox(){
 				uebergabeBox.addItem(neueAuswahleigenschaft.getAuswahl()[i]);
 				} 									
 			}
-									
+		
+		//Hinzufügen der ListBox in den Vector boxen
+		listBoxen.add(uebergabeBox);
+		
 									
 		addRow(infoTable, uebergabeBox, newEigenschaftBox.getValue());
 		dpBox.hide();	
@@ -314,20 +334,80 @@ private DialogBox createDpBox(){
 		removeRow(infoTable);							
 		}
 	});	
+	
 		
-		// Button zum speichern der Infos von Beschreibungs- oder Auswahlfeldern 
+		
+		
+		
+	// Button zum speichern der Infos von Beschreibungs- oder Auswahlfeldern 
 		Button speichernButton = new Button("Speichern");
 		speichernButton.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				// TODO: INFOS ERZEUGEN UND ABSPEICHERN
-			
-				for(int i=0; i< neueInfo.getEigenschaften().capacity(); i++){
-					System.out.println(neueInfo.getEigenschaften().elementAt(i).getBezeichnung());
+		
+	//	In dieser Schleife wird der Vector mit den erstellten Eigenschaften durchgegangen um die dazugehörige TextBox
+	//	zu finden und anschließend den Wert aus der TextBox als neues Info-Objekt abzuspeichern.
+				
+		for(int i=0; i< neueInfo.getEigenschaften().size(); i++){
+			for(int j=0; j< textBoxen.size(); j++){
+				if(neueInfo.getEigenschaften().get(i).getBezeichnung().equals(textBoxen.get(j).getTitle())){
+					
+					//
+					
+					
+					setInfo.setBeschreibungInfo(textBoxen.get(j).getValue());
+					
+					Vector<TestInfo> infoVector = neuesProfil.getInfos();
+					infoVector.add(setInfo);
+					neuesProfil.setInfos(infoVector);
+					
 				}
+			}
+		}
+		
+		
+	//	In dieser Schleife wird der Vector mit den erstellten Eigenschaften durchgegangen um die dazugehörige ListBox
+	//	zu finden und anschließend den Wert aus der TextBox als neues Info-Objekt abzuspeichern.
+		
+		for(int i=0; i< neueInfo.getEigenschaften().size(); i++){
+			for(int j=0; j<listBoxen.size(); j++){
+				if(neueInfo.getEigenschaften().get(i).getBezeichnung().equals(listBoxen.get(j).getTitle())){
+					
+					//
+					
+					TestInfo setInfo= new TestInfo();
+					setInfo.setAuswahlInfo(listBoxen.get(j).getValue(listBoxen.get(j).getSelectedIndex()));
+					
+					Vector<TestInfo> infoVector = neuesProfil.getInfos();
+					infoVector.add(setInfo);
+					neuesProfil.setInfos(infoVector);
+					
+				}
+			}
+		}
+				
+		
+// TEST-SCHLEIFE ZUM AUSGEBEN DER WERTE IM INFO-VECTOR		
+				
+				for(int i=0; i< neuesProfil.getInfos().size(); i++){
+					
+					if (neuesProfil.getInfos().get(i).getAuswahlInfo() != null){
+					System.out.println(neuesProfil.getInfos().get(i).getAuswahlInfo());					
+				} 
+				else if(neuesProfil.getInfos().get(i).getBeschreibungsInfo() != null){
+					System.out.println(neuesProfil.getInfos().get(i).getBeschreibungsInfo());
+				}
+			}		
 		}
 	});
 			  
-			       		   
+	
+		
+		
+		
+		
+		
+		
 			        
 		// Neues Panel erstellen in dem die Buttons zum erstellen und löschen einer neuen Reihe eingefügt werden	        
 		VerticalPanel buttonPanel = new VerticalPanel();
@@ -338,7 +418,7 @@ private DialogBox createDpBox(){
 		
 		// Die FlexTable "infoTabel" wird hier formatiert
 		FlexCellFormatter cellFormatter = infoTable.getFlexCellFormatter();
-		infoTable.setWidth("40em");
+		infoTable.setWidth("45em");
 		infoTable.setCellSpacing(5);
 		infoTable.setCellPadding(3);					
 				    
