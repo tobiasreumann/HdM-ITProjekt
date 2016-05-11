@@ -1,9 +1,18 @@
 package de.hdm.itprojekt.client;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import de.hdm.itprojekt.shared.AdministrationAsync;
+import de.hdm.itprojekt.shared.bo.Profil;
+
 public class ProfilWidget extends Composite{
+	
+	
+	AdministrationAsync administration = ClientsideSettings.getAdministration();
+	
 
 
 	VerticalPanel profilWidgetPanel = new VerticalPanel();
@@ -67,26 +76,30 @@ public ProfilWidget(){
 	}
 	
 	
+	
+	speicherButton.addClickHandler(new ClickHandler(){
+		public void onClick(ClickEvent event) {
+			ProfilBearbeitenCallback aendernProfil = new ProfilBearbeitenCallback();
+			
+		}
+		
+	});
+	
+	
+	
 /**
  * setzen der in der Datenbank enthaltenen Werte in die Felder (Momentan Beispielwerte)
  * 
  */
 	
-	
 
-	
-	
-	
 	vNameBeschreibung.setValue("Fabian");
 	nNameBeschreibung.setValue("König");
 	gebBeschreibung.setValue("27.05.1993");
 	groesseBeschreibung.setValue("180cm");
 	religionBeschreibung.setValue("-");
 	
-	
-	
-	
-	
+
 	profilWidgetPanel.add(profilGrid);
 	profilWidgetPanel.add(speicherButton);
 	
@@ -95,7 +108,7 @@ public ProfilWidget(){
 }
 
 
-class setProfilCallback implements AsyncCallback{
+class ProfilBearbeitenCallback implements AsyncCallback<Profil>{
 
 	@Override
 	public void onFailure(Throwable caught) {
@@ -103,10 +116,14 @@ class setProfilCallback implements AsyncCallback{
 		
 	}
 
+
 	@Override
-	public void onSuccess(Object result) {
+	public void onSuccess(Profil result) {
+		// TODO Auto-generated method stub
+		Profil profil = null;
 		
-		
+
+		}
 	}
 	
-}
+

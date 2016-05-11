@@ -201,10 +201,11 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		}
 		
 		@Override
-		public Profil profilBearbeiten () throws IllegalArgumentException{
+		public Profil profilBearbeiten (Profil p) throws IllegalArgumentException{
 			//TODO
 			return this.profilMapper.bearbeiten();
 		}
+		
 		
 		@Override
 		public Info infoHinzufuegen (String wert, Auswahl a, Beschreibung b) throws IllegalArgumentException{
@@ -276,6 +277,8 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			return this.partnervorschlagMapper.getPartnervorschlaege();
 			//TODO
 		}
+
+
 
 		
 		/*

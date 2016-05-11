@@ -44,7 +44,7 @@ public interface Administration extends RemoteService{
 	
 	public void profilLoeschen (Profil p);
 	
-	public Profil profilBearbeiten ();
+	public Profil profilBearbeiten (Profil p);
 	
 	public Info infoHinzufuegen (String wert, Auswahl a, Beschreibung b);
 
