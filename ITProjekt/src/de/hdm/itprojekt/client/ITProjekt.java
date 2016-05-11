@@ -101,13 +101,20 @@ public class ITProjekt implements EntryPoint {
 			public void onClick(ClickEvent event) {
 
 				// Reinigt den Bereich Content und f√ºgt das Profil hinzu
-				Label profilLabel = new Label("Die Partnervorschl‰ge:");
-				PartnervorschlagWidget pvW = new PartnervorschlagWidget();
-				
+			Label profilLabel = new Label("Die Partnervorschl‰ge:");
+//				
+//				SuchprofilWidget spw = new SuchprofilWidget();
+			
 				RootPanel.get("contentHeader").clear();
 				RootPanel.get("contentHeader").add(profilLabel);
 				RootPanel.get("content").clear();
-				RootPanel.get("content").add(pvW);
+				RootPanel.get("content").add(new SuchprofilWidget());
+//				PartnervorschlagWidget pvW = new PartnervorschlagWidget();
+//				
+//				RootPanel.get("contentHeader").clear();
+//				RootPanel.get("contentHeader").add(profilLabel);
+//				RootPanel.get("content").clear();
+//				RootPanel.get("content").add(pvW);
 
 			}
 		});
