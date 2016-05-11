@@ -1,6 +1,7 @@
 package de.hdm.itprojekt.client;
 
 import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class ProfilWidget extends Composite{
 
@@ -71,6 +72,11 @@ public ProfilWidget(){
  * 
  */
 	
+	
+
+	
+	
+	
 	vNameBeschreibung.setValue("Fabian");
 	nNameBeschreibung.setValue("König");
 	gebBeschreibung.setValue("27.05.1993");
@@ -86,4 +92,21 @@ public ProfilWidget(){
 	
 	initWidget(profilWidgetPanel);
 	}
+}
+
+
+class setProfilCallback implements AsyncCallback{
+
+	@Override
+	public void onFailure(Throwable caught) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSuccess(Object result) {
+		
+		
+	}
+	
 }

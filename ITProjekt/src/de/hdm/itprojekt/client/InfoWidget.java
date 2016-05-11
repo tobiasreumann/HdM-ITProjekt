@@ -2,8 +2,10 @@ package de.hdm.itprojekt.client;
 
 import java.util.Vector;
 
+import com.google.gwt.core.client.Callback;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 
@@ -436,6 +438,26 @@ private DialogBox createDpBox(){
 		
 		// Alle einzelnen Widgets im Panel "infoWidgetPanel" werden nun als ein Widget initialisiert
 	    initWidget(infoWidgetPanel);	      				
+	}
+	
+}
+
+// ----------------------------------
+// Callbacks
+// ----------------------------------
+
+class getInformationCallback implements AsyncCallback{
+
+	@Override
+	public void onFailure(Throwable caught) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSuccess(Object result) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
