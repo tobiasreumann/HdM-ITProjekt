@@ -13,6 +13,7 @@ public class ProfilWidget extends Composite{
 	TextBox groesseBeschreibung = new TextBox();
 	TextBox religionBeschreibung = new TextBox();
 	
+	
 	ListBox geschlechtAuswahl = new ListBox();
 	ListBox haarAuswahl = new ListBox();
 	ListBox raucherAuswahl = new ListBox();
