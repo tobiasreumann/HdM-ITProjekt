@@ -14,6 +14,7 @@ public class TestProfil {
 	private boolean raucher;
 	private int groesse;
 	private String haarfarbe;
+	private Vector<TestSuchprofil> suchprofile= new Vector<TestSuchprofil>();
 
 	public boolean isRaucher() {
 		return raucher;
@@ -70,6 +71,13 @@ public class TestProfil {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public Vector<TestSuchprofil> getSuchprofile() {
+		return suchprofile;
+	}
+
+	public void setSuchprofile(Vector<TestSuchprofil> suchprofile) {
+		this.suchprofile = suchprofile;
+	}
 
 	public TestProfil(String name, String geschlecht, int alter, int aehnlichkeitswert, boolean raucher, int groesse) {
 		this.setName(name);
@@ -78,6 +86,10 @@ public class TestProfil {
 		this.aehnlichkeitswert = aehnlichkeitswert;
 		this.raucher = raucher;
 		this.groesse = groesse;
+	}
+
+	public TestProfil() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public static Vector<TestProfil> getProfile() {

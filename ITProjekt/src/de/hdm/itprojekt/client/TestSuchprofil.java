@@ -13,7 +13,7 @@ public class TestSuchprofil {
 	private String geschlechtAuswahl;
 	private boolean raucherAuswahl;
 	private String raucherEgal=null;
-	private Vector<TestSuchprofil> suchprofile= new Vector<TestSuchprofil>();
+	
 
 	public String[] getHaarfarbe() {
 		return haarfarbe;
@@ -97,19 +97,11 @@ public class TestSuchprofil {
 			}
 			return s;
 		}
-		
-		
 	}
 
-	public Vector<TestSuchprofil> getSuchprofile() {
-		return suchprofile;
-	}
 
-	public void setSuchprofile(Vector<TestSuchprofil> suchprofile) {
-		this.suchprofile = suchprofile;
-	}
 	
-	public Vector<TestProfil> suchergebnis(Vector<TestProfil> profile, TestSuchprofil suchprofil){
+	public static Vector<TestProfil> suchergebnis(Vector<TestProfil> profile, TestSuchprofil suchprofil){
 		Vector<TestProfil> ergebnis = new Vector<TestProfil>();
 		
 		for (int i=0; i< profile.size(); i++ ){
