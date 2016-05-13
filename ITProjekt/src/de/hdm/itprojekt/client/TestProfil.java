@@ -13,6 +13,7 @@ public class TestProfil {
 	private int aehnlichkeitswert;
 	private boolean raucher;
 	private int groesse;
+	private Vector<TestInfo> infos = new Vector<TestInfo>();
 	private String haarfarbe;
 	private Vector<TestSuchprofil> suchprofile= new Vector<TestSuchprofil>();
 
@@ -103,5 +104,15 @@ public class TestProfil {
 		profile.add(new TestProfil("goerg", "maennlich", 55, 57, true, 176));
 		return profile;
 	}
+	
+	public Vector<TestInfo> getInfos(){
+		return infos;
+		
+	}
+	
+	public void setInfos(Vector<TestInfo> i){
+		this.infos = i;
+	}
 
+		
 }

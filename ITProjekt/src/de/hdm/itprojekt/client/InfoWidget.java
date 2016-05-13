@@ -1,5 +1,7 @@
 package de.hdm.itprojekt.client;
 
+import java.util.Vector;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
@@ -12,14 +14,14 @@ public class InfoWidget extends Composite{
 //Sonstige	
 //-----------------------------------------------------------------------	
 	
-	VerticalPanel infoWidgetPanel = new VerticalPanel();	
-	ListBox auswahlBox = new ListBox();
+	private VerticalPanel infoWidgetPanel = new VerticalPanel();	
+	private ListBox auswahlBox = new ListBox();
 
 //-----------------------------------------------------------------------
 //FlexTable erstellen
 //-----------------------------------------------------------------------
 	
-	final FlexTable infoTable = new FlexTable();
+	private FlexTable infoTable = new FlexTable();
 
 
 
@@ -55,11 +57,10 @@ public class InfoWidget extends Composite{
 
 
 
-Label header = new Label("Füge eine neue Eigenschaft hinzu: ");	
-TextBox newEigenschaftBox = new TextBox();
-TextBox einzufuegendeBox = new TextBox();
-Button esButton = new Button("Eigenschaft speichern");
-Button closeButton = new Button("Schließen");
+private Label header = new Label("Füge eine neue Eigenschaft hinzu: ");	
+private TextBox newEigenschaftBox = new TextBox();
+private Button esButton = new Button("Eigenschaft speichern");
+private Button closeButton = new Button("Schließen");
 
 
 private DialogBox createDiBox(){
@@ -105,19 +106,19 @@ private DialogBox createDiBox(){
 //-----------------------------------------------------------------
 
 //Für DropDown-Feld
-	Label dpLabel = new Label("Bitte geben Sie die Auswahloptionen an: ");
-	TextBox dp1Box = new TextBox();
-	TextBox dp2Box = new TextBox();
-	TextBox dp3Box = new TextBox();
-	TextBox dp4Box = new TextBox();
-	TextBox dp5Box = new TextBox();
-	TextBox dp6Box = new TextBox();
-	TextBox dp7Box = new TextBox();
-	TextBox dp8Box = new TextBox();
-	VerticalPanel dpPanel = new VerticalPanel();
-	HorizontalPanel dpButtonPanel = new HorizontalPanel();
-	Button dpCloseButton = new Button("Schließen");
-	Button dpSaveButton = new Button("Speichern");	
+	private Label dpLabel = new Label("Bitte geben Sie die Auswahloptionen an: ");
+	private TextBox dp1Box = new TextBox();
+	private TextBox dp2Box = new TextBox();
+	private TextBox dp3Box = new TextBox();
+	private TextBox dp4Box = new TextBox();
+	private TextBox dp5Box = new TextBox();
+	private TextBox dp6Box = new TextBox();
+	private TextBox dp7Box = new TextBox();
+	private TextBox dp8Box = new TextBox();
+	private VerticalPanel dpPanel = new VerticalPanel();
+	private HorizontalPanel dpButtonPanel = new HorizontalPanel();
+	private Button dpCloseButton = new Button("Schließen");
+	private Button dpSaveButton = new Button("Speichern");	
 
 
 
@@ -165,14 +166,37 @@ private DialogBox createDpBox(){
 //	}		
 
 
+
+
+		
+
+		
+
+	
+		
 //-----------------------------------------------------------------
 //Konstruktor zum erzeugen des Info- Widget!
 //-----------------------------------------------------------------
 	
 	public InfoWidget(){
 	
+// erstellen der DialogBoxen
 		final DialogBox dpBox = createDpBox();
 		final DialogBox dialogBox = createDiBox();
+		
+// TEST: PROFIL ANLEGEN UM DARIN INFOS ZU SPEICHERN
+		final TestProfil neuesProfil= new TestProfil("tobra", "maennlich", 28, 14, false, 175);		
+		
+		
+// erstellen einer neuen Instanz von Info
+		final TestInfo setInfo= new TestInfo();
+		
+//Neue Instanz einer Info erstellen		
+		final TestInfo neueInfo = new TestInfo();
+		
+//Neue Vectoren zum speichern der erzeugten Boxen
+		final Vector<TextBox> textBoxen = new Vector<TextBox>();
+		final Vector<ListBox> listBoxen = new Vector<ListBox>();		
 
 		
 /**
@@ -216,10 +240,23 @@ private DialogBox createDpBox(){
 		if(auswahlBox.getValue(auswahlBox.getSelectedIndex()).equals("Eingabefeld") ){
 		
 			TextBox uebergabeBox = new TextBox();
-			uebergabeBox.setTitle(newEigenschaftBox.getValue());
+			// Erzeugt eine neue Eigenschaft und setzt deren Bezeichnung
+			TestBeschreibungseigenschaft neueEigenschaft = new TestBeschreibungseigenschaft(newEigenschaftBox.getValue());
+			uebergabeBox.setTitle(neueEigenschaft.getBezeichnung());
 			
+			//Hinzufügen der TextBox in den Vector boxen
+			textBoxen.add(uebergabeBox);
+			
+			
+			//Die Übergebene Eigenschaft wird in einem Vector gespeichert
+			Vector<TestEigenschaft> eig = neueInfo.getEigenschaften();
+			eig.add(neueEigenschaft);
+			neueInfo.setEigenschaften(eig);	
 			
 		addRow(infoTable, uebergabeBox , newEigenschaftBox.getValue());
+		
+
+		
 		dialogBox.hide();
 						
 		// Wenn "DropDown-Feld" angegeben ist wird eine neue DialogBox angezeigt. 
@@ -257,16 +294,23 @@ private DialogBox createDpBox(){
 											dp6Box.getValue(), dp7Box.getValue(),dp8Box.getValue()};
 									
 		ListBox uebergabeBox = new ListBox();
-		uebergabeBox.setTitle(newEigenschaftBox.getValue());
+		
+		//Erzeugen einer neuen Auswahleigenschaft
+		TestAuswahleigenschaft neueAuswahleigenschaft = new TestAuswahleigenschaft(auswahlOptionen, newEigenschaftBox.getValue());
+		uebergabeBox.setTitle(neueAuswahleigenschaft.getBezeichnung());
+		
 									
 		// Schleife die die übergebenen Auswahloptionen in eine ListBox schreibt und übergibt.
 									
-		for(int i=0; i<auswahlOptionen.length; i++){
-			if(!auswahlOptionen[i].equals("")){
-				uebergabeBox.addItem(auswahlOptionen[i]);
+		for(int i=0; i< neueAuswahleigenschaft.getAuswahl().length; i++){
+			if(!neueAuswahleigenschaft.getAuswahl()[i].equals("")){
+				uebergabeBox.addItem(neueAuswahleigenschaft.getAuswahl()[i]);
 				} 									
 			}
-									
+		
+		//Hinzufügen der ListBox in den Vector boxen
+		listBoxen.add(uebergabeBox);
+		
 									
 		addRow(infoTable, uebergabeBox, newEigenschaftBox.getValue());
 		dpBox.hide();	
@@ -289,19 +333,92 @@ private DialogBox createDpBox(){
 		public void onClick(ClickEvent event) {
 		removeRow(infoTable);							
 		}
-	});			        
+	});	
+	
+		
+		
+		
+		
+	// Button zum speichern der Infos von Beschreibungs- oder Auswahlfeldern 
+		Button speichernButton = new Button("Speichern");
+		speichernButton.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				// TODO: INFOS ERZEUGEN UND ABSPEICHERN
+		
+	//	In dieser Schleife wird der Vector mit den erstellten Eigenschaften durchgegangen um die dazugehörige TextBox
+	//	zu finden und anschließend den Wert aus der TextBox als neues Info-Objekt abzuspeichern.
+				
+		for(int i=0; i< neueInfo.getEigenschaften().size(); i++){
+			for(int j=0; j< textBoxen.size(); j++){
+				if(neueInfo.getEigenschaften().get(i).getBezeichnung().equals(textBoxen.get(j).getTitle())){
+					
+					//
+					
+					
+					setInfo.setBeschreibungInfo(textBoxen.get(j).getValue());
+					
+					Vector<TestInfo> infoVector = neuesProfil.getInfos();
+					infoVector.add(setInfo);
+					neuesProfil.setInfos(infoVector);
+					
+				}
+			}
+		}
+		
+		
+	//	In dieser Schleife wird der Vector mit den erstellten Eigenschaften durchgegangen um die dazugehörige ListBox
+	//	zu finden und anschließend den Wert aus der TextBox als neues Info-Objekt abzuspeichern.
+		
+		for(int i=0; i< neueInfo.getEigenschaften().size(); i++){
+			for(int j=0; j<listBoxen.size(); j++){
+				if(neueInfo.getEigenschaften().get(i).getBezeichnung().equals(listBoxen.get(j).getTitle())){
+					
+					//
+					
+					TestInfo setInfo= new TestInfo();
+					setInfo.setAuswahlInfo(listBoxen.get(j).getValue(listBoxen.get(j).getSelectedIndex()));
+					
+					Vector<TestInfo> infoVector = neuesProfil.getInfos();
+					infoVector.add(setInfo);
+					neuesProfil.setInfos(infoVector);
+					
+				}
+			}
+		}
+				
+		
+// TEST-SCHLEIFE ZUM AUSGEBEN DER WERTE IM INFO-VECTOR		
+				
+				for(int i=0; i< neuesProfil.getInfos().size(); i++){
+					
+					if (neuesProfil.getInfos().get(i).getAuswahlInfo() != null){
+					System.out.println(neuesProfil.getInfos().get(i).getAuswahlInfo());					
+				} 
+				else if(neuesProfil.getInfos().get(i).getBeschreibungsInfo() != null){
+					System.out.println(neuesProfil.getInfos().get(i).getBeschreibungsInfo());
+				}
+			}		
+		}
+	});
 			  
-			       		   
+	
+		
+		
+		
+		
+		
+		
 			        
 		// Neues Panel erstellen in dem die Buttons zum erstellen und löschen einer neuen Reihe eingefügt werden	        
 		VerticalPanel buttonPanel = new VerticalPanel();
 		buttonPanel.setSpacing(5);
 		buttonPanel.add(addRowButton);
-		buttonPanel.add(removeRowButton);  
+		buttonPanel.add(removeRowButton);
+		buttonPanel.add(speichernButton);
 		
 		// Die FlexTable "infoTabel" wird hier formatiert
 		FlexCellFormatter cellFormatter = infoTable.getFlexCellFormatter();
-		infoTable.setWidth("40em");
+		infoTable.setWidth("45em");
 		infoTable.setCellSpacing(5);
 		infoTable.setCellPadding(3);					
 				    
