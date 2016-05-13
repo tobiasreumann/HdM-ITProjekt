@@ -10,7 +10,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.user.client.ui.*;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 public class SuchprofilWidget extends Composite {
 
@@ -18,6 +17,7 @@ public class SuchprofilWidget extends Composite {
 	HorizontalPanel buttons = new HorizontalPanel();
 	FlexTable bezTable = new FlexTable();
 	FlexTable ftable = new FlexTable();
+	ScrollPanel scrollpanel = new ScrollPanel();
 
 	ListBox bezeichnung = new ListBox();
 	TextBox neuBezeichnung = new TextBox();
@@ -43,7 +43,6 @@ public class SuchprofilWidget extends Composite {
 		alterMin.setMaxLength(2);
 		alterMax.setWidth("50px");
 		alterMax.setMaxLength(2);
-		geschlecht.addItem("test");
 
 		/**
 		 * Die KeyPressHandler sollen die Eingabe von Werten ausserhalb des
@@ -98,9 +97,13 @@ public class SuchprofilWidget extends Composite {
 		});
 		partnervorschlaege.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				new PartnervorschlagWidget(
-				TestSuchprofil.suchergebnis(TestProfil.getProfile(),
-						urprofil.getSuchprofile().get(bezeichnung.getSelectedIndex())));
+				PartnervorschlagWidget vorschlag = new PartnervorschlagWidget(TestSuchprofil.suchergebnis(
+						TestProfil.getProfile(), urprofil.getSuchprofile().get(bezeichnung.getSelectedIndex())));
+				
+				scrollpanel.clear();
+				scrollpanel.add(vorschlag);
+				vPanel.add(scrollpanel);
+				;
 			}
 		});
 
@@ -167,40 +170,38 @@ public class SuchprofilWidget extends Composite {
 
 		bezeichnung.setEnabled(false);
 		bezTable.setHTML(1, 0, "<div><b>neues Profil:</b></div>");
-		bezTable.setWidget(1, 2, neuBezeichnung);
-		neuBezeichnung.setWidth("100%");
-		alterMin.setValue(null);
-		alterMax.setValue(null);
+		bezTable.setWidget(1, 1, neuBezeichnung);
+		neuBezeichnung.setWidth("float");
+		neuBezeichnung.setValue(null);
+		alterMin.setValue(0);
+		alterMax.setValue(99);
 
 		// Die Auswahloptionen werden den jeweiligen Dropdown-Felder
 		// hinzugefügt.
 		alterMin.setEnabled(true);
 		alterMax.setEnabled(true);
 		haarfarbe.setEnabled(true);
+		haarfarbe.clear();
 		geschlecht.setEnabled(true);
+		geschlecht.clear();
 		raucher.setEnabled(true);
+		raucher.clear();
+
 		TestSuchprofil temp = new TestSuchprofil();
-//		String[] tempGeschlecht = new String[10];
-//		tempGeschlecht=	temp.getGeschlecht();
-//		String[] tempHaarfarbe = 
-//				temp.getHaarfarbe();
-//		String[] tempRaucher = 
-//				temp.getRaucher();
 
 		for (int i = 0; i < temp.getGeschlecht().length; i++) {
-			geschlecht.setValue(i, temp.getGeschlecht()[i]);
+			geschlecht.addItem(temp.getGeschlecht()[i]);
 		}
-//		for (int i = 0; i < tempHaarfarbe.length; i++) {
-//			haarfarbe.setValue(i, tempHaarfarbe[i]);
-//		}
-//		for (int i = 0; i < tempRaucher.length; i++) {
-//			raucher.setValue(i, tempRaucher[i]);
-//		}
+		for (int i = 0; i < temp.getHaarfarbe().length; i++) {
+			haarfarbe.addItem(temp.getHaarfarbe()[i]);
+		}
+		for (int i = 0; i < temp.getRaucher().length; i++) {
+			raucher.addItem(temp.getRaucher()[i]);
+		}
 
 		haarfarbe.setSelectedIndex(0);
 		geschlecht.setSelectedIndex(0);
 		raucher.setSelectedIndex(0);
-		
 
 	}
 
@@ -213,12 +214,24 @@ public class SuchprofilWidget extends Composite {
 
 		// Die Namen der Suchprofile werden in die Dropdownbox "bezeichnnung"
 		// eingefügt.
+		bezeichnung.clear();
 		for (int i = 0; i < v.size(); i++) {
 			bezeichnung.addItem(v.get(i).getName());
 		}
 
 		// Die Auswahlfelder sollen die gespeicherten Werte des Suchprofils
 		// unveränderbar anzeigen.
+		haarfarbe.clear();
+		geschlecht.clear();
+		raucher.clear();
+
+		if (!v.isEmpty()) {
+			alterMin.setValue(v.firstElement().getAlterMin());
+			alterMax.setValue(v.firstElement().getAlterMax());
+			haarfarbe.addItem(v.firstElement().getHaarfarbeAuswahl());
+			geschlecht.addItem(v.firstElement().getGeschlechtAuswahl());
+			raucher.addItem(v.firstElement().getRaucherAuswahl());
+		}
 		alterMin.setEnabled(false);
 		alterMax.setEnabled(false);
 		haarfarbe.setEnabled(false);
@@ -230,11 +243,14 @@ public class SuchprofilWidget extends Composite {
 		final Vector<TestSuchprofil> temp = v;
 		bezeichnung.addChangeHandler(new ChangeHandler() {
 			public void onChange(ChangeEvent event) {
+				haarfarbe.clear();
+				geschlecht.clear();
+				raucher.clear();
 				alterMin.setValue(temp.get(bezeichnung.getSelectedIndex()).getAlterMin());
-				alterMax.setValue(temp.get(bezeichnung.getSelectedIndex()).getAlterMin());
-				haarfarbe.setValue(0, temp.get(bezeichnung.getSelectedIndex()).getHaarfarbeAuswahl());
-				geschlecht.setValue(0, temp.get(bezeichnung.getSelectedIndex()).getGeschlechtAuswahl());
-				raucher.setValue(0, temp.get(bezeichnung.getSelectedIndex()).getRaucherAuswahl());
+				alterMax.setValue(temp.get(bezeichnung.getSelectedIndex()).getAlterMax());
+				haarfarbe.addItem(temp.get(bezeichnung.getSelectedIndex()).getHaarfarbeAuswahl());
+				geschlecht.addItem(temp.get(bezeichnung.getSelectedIndex()).getGeschlechtAuswahl());
+				raucher.addItem(temp.get(bezeichnung.getSelectedIndex()).getRaucherAuswahl());
 			}
 		});
 	}
@@ -246,11 +262,31 @@ public class SuchprofilWidget extends Composite {
 	 * des Nutzers. (TODO)
 	 */
 	public void suchprofilSpeichern(Vector<TestSuchprofil> v) {
+
 		TestSuchprofil neuesProfil = new TestSuchprofil();
-		neuesProfil.setAlterMin(alterMin.getValue());
-		neuesProfil.setAlterMax(alterMax.getValue());
 		neuesProfil.setHaarfarbeAuswahl(haarfarbe.getValue(haarfarbe.getSelectedIndex()));
 		neuesProfil.setGeschlechtAuswahl(geschlecht.getValue(geschlecht.getSelectedIndex()));
+
+		// Prüfung ob das Minimumalter kleiner dem Maximumalter ist, sowie
+		// setzen von Werten bei leeren Feldern.
+
+		if (alterMin.getValue() <= alterMax.getValue()) {
+			neuesProfil.setAlterMin(alterMin.getValue());
+			neuesProfil.setAlterMax(alterMax.getValue());
+		} else {
+			DialogBox error = new DialogBox();
+			Label label = new Label("Das Minimumalter muss kleiner als das Maximumalter sein");
+			error.add(label);
+			error.setText("Error");
+			error.center();
+			error.show();
+			error.setAutoHideEnabled(true);
+			return;
+		}
+
+		// Prüfung welchen Wert der Nutzer für den Suchwert Raucher gewählt hat.
+		// Bei "ja" oder "nein" wird der entsprechende boolean gesetzt, bei dem
+		// neutralen "egal" wird der String RaucherEgal gesetzt.
 		if (raucher.getValue(raucher.getSelectedIndex()).equals("egal")) {
 			neuesProfil.setRaucherEgal("egal");
 		} else if (raucher.getValue(raucher.getSelectedIndex()).equals("ja")) {
@@ -258,8 +294,13 @@ public class SuchprofilWidget extends Composite {
 		} else if (raucher.getValue(raucher.getSelectedIndex()).equals("nein")) {
 			neuesProfil.setRaucherAuswahl(false);
 		}
+
+		// Prüfung ob der eingegebene Profilname mind. 3 Zeichen enthält.
 		if (neuBezeichnung.getValue().length() > 2) {
 			neuesProfil.setName(neuBezeichnung.getValue());
+			bezTable.clearCell(1, 1);
+			bezTable.clearCell(1, 0);
+			bezeichnung.setEnabled(true);
 		} else {
 			DialogBox error = new DialogBox();
 			Label label = new Label("Bitte Suchprofilname mit mind. 3 Zeichen eingeben");
@@ -268,6 +309,7 @@ public class SuchprofilWidget extends Composite {
 			error.center();
 			error.show();
 			error.setAutoHideEnabled(true);
+			return;
 		}
 		v.addElement(neuesProfil);
 		urprofil.setSuchprofile(v);
@@ -282,5 +324,6 @@ public class SuchprofilWidget extends Composite {
 	 */
 	public void suchprofilLoeschen(Vector<TestSuchprofil> v) {
 		v.remove(bezeichnung.getSelectedIndex());
+		werteEinfuegen(v);
 	}
 }
