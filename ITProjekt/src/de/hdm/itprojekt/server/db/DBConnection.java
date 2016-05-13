@@ -1,16 +1,26 @@
 package de.hdm.itprojekt.server.db;
+ 
+import java.sql.Connection;
+import java.sql.DriverManager;
 
-import java.sql.*;
+
 public class DBConnection {
+	
+	private static Connection con = null;
+	private static String url = "jdbc:mysql://localhost:3306/Angestellte";
+	private static String user = "root";
+	private static String password = "";
 
-	public static void main(String[] args) {
+
 		
+		public static Connection connection() {
 		try {
-			Connection verbindung = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBName", "Name", "Passwort");
 			
-			Statement sqlStatement = verbindung.createStatement();
+			Class.forName("com.mysql.jdbc.Driver");
 			
-			//test
+			con = DriverManager.getConnection(url+","+user+","+password);
+			
+			
 			
 			
 			
@@ -18,6 +28,7 @@ public class DBConnection {
 		catch (Exception e){
 			e.printStackTrace ();
 		}
+		return con;
 		
 	}
 
