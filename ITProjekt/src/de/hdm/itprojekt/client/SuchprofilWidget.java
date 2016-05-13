@@ -110,7 +110,7 @@ public class SuchprofilWidget extends Composite {
 		haarfarbe.setWidth("50%");
 		geschlecht.setWidth("50%");
 		raucher.setWidth("50%");
-		bezeichnung.setWidth("100%");
+		bezeichnung.setWidth("50%");
 		bezTable.setHTML(0, 0, "<b>Suchprofil:</b>");
 		bezTable.setWidget(0, 1, bezeichnung);
 		bezTable.getColumnFormatter().setWidth(0, "12%");
@@ -171,7 +171,7 @@ public class SuchprofilWidget extends Composite {
 		bezeichnung.setEnabled(false);
 		bezTable.setHTML(1, 0, "<div><b>neues Profil:</b></div>");
 		bezTable.setWidget(1, 1, neuBezeichnung);
-		neuBezeichnung.setWidth("float");
+		//neuBezeichnung.setWidth("50%");
 		neuBezeichnung.setValue(null);
 		alterMin.setValue(0);
 		alterMax.setValue(99);

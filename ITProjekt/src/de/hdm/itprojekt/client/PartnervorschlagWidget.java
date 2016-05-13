@@ -44,6 +44,7 @@ public class PartnervorschlagWidget extends Composite {
 				return object.getAehnlichkeitswert();
 			}
 		};
+		//TODO: weitere Spalten wie "raucher" oder "haarfarbe" hinzufügen"
 
 		/**
 		 * Hinzufügen der Spalten zur Tabelle, in der Reihenfolge von Links nach
