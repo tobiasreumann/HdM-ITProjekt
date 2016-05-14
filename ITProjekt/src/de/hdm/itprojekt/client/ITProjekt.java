@@ -1,5 +1,7 @@
 package de.hdm.itprojekt.client;
 
+import org.eclipse.jetty.websocket.WebSocket.OnControl;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -72,7 +74,9 @@ public class ITProjekt implements EntryPoint {
 		VerticalPanel hpanel = new VerticalPanel();
 		RootPanel.get("nav").add(hpanel);
 		hpanel.add(menuWidget());
-
+		
+		
+		
 		/**
 		 * ClickHandler f√ºr den Profil-Button!
 		 */
@@ -88,33 +92,24 @@ public class ITProjekt implements EntryPoint {
 				RootPanel.get("contentHeader").add(profilLabel);
 
 				RootPanel.get("content").clear();
-				hpPanel.add(new ProfilWidget());
+				//hpPanel.add(new ProfilWidget());
 				hpPanel.add(new InfoWidget());
 				RootPanel.get("content").add(hpPanel);
 			}
 		});
 		/**
-		 * ClickHandler f√ºr den Suchprofil-Button! Testweise wird an dieser
-		 * Stelle die Tabelle mit der Darstellung der Parnervorschl‰ge erzeugt.
+		 * ClickHandler f√ºr den Suchprofil-Button!
 		 */
 		sprofilButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 
 				// Reinigt den Bereich Content und f√ºgt das Profil hinzu
-			Label profilLabel = new Label("Die Partnervorschl‰ge:");
-//				
-//				SuchprofilWidget spw = new SuchprofilWidget();
-			
+				Label profilLabel = new Label("Die Partnervorschl‰ge:");
+
 				RootPanel.get("contentHeader").clear();
 				RootPanel.get("contentHeader").add(profilLabel);
 				RootPanel.get("content").clear();
 				RootPanel.get("content").add(new SuchprofilWidget());
-//				PartnervorschlagWidget pvW = new PartnervorschlagWidget();
-//				
-//				RootPanel.get("contentHeader").clear();
-//				RootPanel.get("contentHeader").add(profilLabel);
-//				RootPanel.get("content").clear();
-//				RootPanel.get("content").add(pvW);
 
 			}
 		});
@@ -132,9 +127,12 @@ public class ITProjekt implements EntryPoint {
 
 				RootPanel.get("content").clear();
 				RootPanel.get("content").add(new StartseiteWidget());
+				
 
 			}
+			
 		});
-
+		homeButton.click();
 	}
+	
 }

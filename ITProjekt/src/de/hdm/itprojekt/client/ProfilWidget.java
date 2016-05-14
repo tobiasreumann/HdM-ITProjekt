@@ -22,7 +22,7 @@ public class ProfilWidget extends Composite{
 
 	
 	
-public ProfilWidget(){
+public ProfilWidget(TestProfil p){
 	
 	Grid profilGrid = new Grid(8,2);
 	profilGrid.setCellSpacing(10);
@@ -87,4 +87,5 @@ public ProfilWidget(){
 	
 	initWidget(profilWidgetPanel);
 	}
+
 }

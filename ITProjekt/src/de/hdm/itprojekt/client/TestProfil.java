@@ -2,13 +2,20 @@ package de.hdm.itprojekt.client;
 
 import java.util.Vector;
 
+
+
+
+
+
+
 /**
  * 
  * @TR Testweise erstellte Klasse zum Test des PartnervorschlagWidget
  */
 
 public class TestProfil {
-	private String name, geschlecht;
+	private String name, vorname, geschlecht, religion;
+	//private Date geburtsdatum;
 	private int alter;
 	private int aehnlichkeitswert;
 	private boolean raucher;
@@ -16,6 +23,30 @@ public class TestProfil {
 	private Vector<TestInfo> infos = new Vector<TestInfo>();
 	private String haarfarbe;
 	private Vector<TestSuchprofil> suchprofile= new Vector<TestSuchprofil>();
+
+	public String getVorname() {
+		return vorname;
+	}
+
+	public void setVorname(String vorname) {
+		this.vorname = vorname;
+	}
+
+	public String getReligion() {
+		return religion;
+	}
+
+	public void setReligion(String religion) {
+		this.religion = religion;
+	}
+
+//	public Date getGeburtsdatum() {
+//		return geburtsdatum;
+//	}
+//
+//	public void setGeburtsdatum(Date geburtsdatum) {
+//		this.geburtsdatum = geburtsdatum;
+//	}
 
 	public boolean isRaucher() {
 		return raucher;

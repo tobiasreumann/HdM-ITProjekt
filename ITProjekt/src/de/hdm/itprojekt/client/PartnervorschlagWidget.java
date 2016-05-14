@@ -1,5 +1,7 @@
 package de.hdm.itprojekt.client;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Vector;
 
@@ -55,10 +57,16 @@ public class PartnervorschlagWidget extends Composite {
 		partnervorschlag.addColumn(alterColumn, "Alter");
 		partnervorschlag.addColumn(aehnlichkeitColumn, "Ähnlichkeit");
 
+	
+		//Sortieren des Vectors nach dem Ähnlichkeitswert (TODO: in Applikationslogik verschieben?)
+		Collections.sort(p, new Comparator<TestProfil>() {
+			public int compare(TestProfil o1, TestProfil o2) {
+				return o1.getAehnlichkeitswert()-o2.getAehnlichkeitswert();
+			}});
+		
 		/**
 		 * Füllen der Tabellenzeilen mit Werten (TODO)
 		 */
-		//partnervorschlag.setRowData(0, TestProfil.getProfile());
 		partnervorschlag.setRowData(0, p);
 
 		/**
