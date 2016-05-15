@@ -1,5 +1,7 @@
 package de.hdm.itprojekt.client;
 
+import java.util.Vector;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
@@ -21,6 +23,7 @@ public class ProfilWidget extends Composite {
 
 	Button speicherButton = new Button("Profil Speichern");
 	Button profilBearbeiten = new Button("Profil bearbeiten");
+	Button merkbutton = new Button("Profil merken");
 
 	Grid profilGrid = new Grid(8, 2);
 
@@ -66,6 +69,46 @@ public class ProfilWidget extends Composite {
 		});
 
 		profilwerteAnzeigen(p);
+
+		initWidget(profilWidgetPanel);
+	}
+	
+	public ProfilWidget(Vector<TestProfil> v) {
+		final TestProfil temp = v.firstElement();
+		
+		profilGrid.setCellSpacing(10);
+		profilGrid.setHTML(0, 0, "Vorname: ");
+		profilGrid.setWidget(0, 1, vNameBeschreibung);
+		profilGrid.setHTML(1, 0, "Nachname: ");
+		profilGrid.setWidget(1, 1, nNameBeschreibung);
+		profilGrid.setHTML(2, 0, "Geschlecht: ");
+		profilGrid.setWidget(2, 1, geschlechtAuswahl);
+		profilGrid.setHTML(3, 0, "Geburtsdatum: ");
+		profilGrid.setWidget(3, 1, gebBeschreibung);
+		profilGrid.setHTML(4, 0, "Haarfarbe: ");
+		profilGrid.setWidget(4, 1, haarAuswahl);
+		profilGrid.setHTML(5, 0, "Körpergröße: ");
+		profilGrid.setWidget(5, 1, groesseBeschreibung);
+		profilGrid.setHTML(6, 0, "Raucher: ");
+		profilGrid.setWidget(6, 1, raucherAuswahl);
+		profilGrid.setHTML(7, 0, "Religion: ");
+		profilGrid.setWidget(7, 1, religionBeschreibung);
+
+		
+		haarAuswahl.setPixelSize(150, 30);
+		geschlechtAuswahl.setPixelSize(150, 30);
+		raucherAuswahl.setPixelSize(150, 30);
+
+		profilWidgetPanel.add(profilGrid);
+		
+
+		merkbutton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				//TODO: Profil zur Merkliste hinzuf�gen
+			}
+		});
+		
+		profilwerteAnzeigen(temp);
 
 		initWidget(profilWidgetPanel);
 	}
@@ -121,21 +164,44 @@ public class ProfilWidget extends Composite {
 		TestProfil temp = new TestProfil();
 		for (int i = 0; i < temp.getGeschlechtArray().length; i++) {
 			geschlechtAuswahl.addItem(temp.getGeschlechtArray()[i]);
+			if (temp.getGeschlechtArray()[i].equals(t.getGeschlecht())){
+				geschlechtAuswahl.setSelectedIndex(i);
+			}
 		}
+		
 
 		// Optionen für die Auswahl Haarfarbe
 		for (int i = 0; i < temp.getHaarfarbeArray().length; i++) {
 			haarAuswahl.addItem(temp.getHaarfarbeArray()[i]);
+			if (temp.getHaarfarbeArray()[i].equals(t.getHaarfarbe())){
+				haarAuswahl.setSelectedIndex(i);
+			}
 		}
 
 		// Optionen für die Auswahl Raucher
 		for (int i = 0; i < temp.getRaucherArray().length; i++) {
 			raucherAuswahl.addItem(temp.getRaucherArray()[i]);
+			
 		}
-
+		if(t.isRaucher()){
+			raucherAuswahl.setSelectedIndex(0);
+		}
+		else{raucherAuswahl.setSelectedIndex(1);}
 	}
 
 	public void profilSpeichern(TestProfil t) {
+		
+		t.setGeschlecht(geschlechtAuswahl.getValue(geschlechtAuswahl.getSelectedIndex()));
+		t.setHaarfarbe(haarAuswahl.getValue(haarAuswahl.getSelectedIndex()));
+		t.setVorname(vNameBeschreibung.getValue());
+		t.setName(nNameBeschreibung.getValue());
+		//t.setGeburtsdatum
+		t.setGroesse(groesseBeschreibung.getValue());
+		t.setReligion(religionBeschreibung.getValue());
+		if (raucherAuswahl.getValue(raucherAuswahl.getSelectedIndex()).equalsIgnoreCase("ja")){
+			t.setRaucher(true);
+		}
+		else {t.setRaucher(false);}
 
 		// Ausgrauen der Eingabefelder
 		geschlechtAuswahl.setEnabled(false);
