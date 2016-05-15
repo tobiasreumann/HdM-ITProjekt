@@ -185,7 +185,7 @@ private DialogBox createDpBox(){
 		final DialogBox dialogBox = createDiBox();
 		
 // TEST: PROFIL ANLEGEN UM DARIN INFOS ZU SPEICHERN
-		final TestProfil neuesProfil= new TestProfil("tobra", "maennlich", 28, 14, false, 175);		
+		final TestProfil neuesProfil= new TestProfil("cobra", "tobra", "maennlich", 28, 14, false, 175, "rastafari");		
 		
 		
 // erstellen einer neuen Instanz von Info

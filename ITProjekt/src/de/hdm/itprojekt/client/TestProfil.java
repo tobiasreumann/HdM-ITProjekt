@@ -4,17 +4,17 @@ import java.util.Vector;
 
 
 
-
-
-
-
 /**
  * 
  * @TR Testweise erstellte Klasse zum Test des PartnervorschlagWidget
  */
 
 public class TestProfil {
+	private static String[] haarfarbeArray = new String[] {"blond", "rot", "braun", "schwarz"};
+	private static String[] geschlechtArray = new String[] {"maennlich", "weiblich"};
+	private static String[] raucherArray = new String[] {"ja", "nein"};
 	private String name, vorname, geschlecht, religion;
+	//TODO date datentyp erzeugt compilerfehler
 	//private Date geburtsdatum;
 	private int alter;
 	private int aehnlichkeitswert;
@@ -23,6 +23,18 @@ public class TestProfil {
 	private Vector<TestInfo> infos = new Vector<TestInfo>();
 	private String haarfarbe;
 	private Vector<TestSuchprofil> suchprofile= new Vector<TestSuchprofil>();
+
+	public  String[] getHaarfarbeArray() {
+		return haarfarbeArray;
+	}
+
+	public String[] getGeschlechtArray() {
+		return geschlechtArray;
+	}
+
+	public  String[] getRaucherArray() {
+		return raucherArray;
+	}
 
 	public String getVorname() {
 		return vorname;
@@ -111,13 +123,15 @@ public class TestProfil {
 		this.suchprofile = suchprofile;
 	}
 
-	public TestProfil(String name, String geschlecht, int alter, int aehnlichkeitswert, boolean raucher, int groesse) {
-		this.setName(name);
+	public TestProfil(String name, String vorname, String geschlecht, int alter, int aehnlichkeitswert, boolean raucher, int groesse, String religion) {
+		this.name =name;
+		this.vorname = vorname;
 		this.geschlecht = geschlecht;
 		this.alter = alter;
 		this.aehnlichkeitswert = aehnlichkeitswert;
 		this.raucher = raucher;
 		this.groesse = groesse;
+		this.religion=religion;
 	}
 
 	public TestProfil() {
@@ -126,13 +140,13 @@ public class TestProfil {
 
 	public static Vector<TestProfil> getProfile() {
 		Vector<TestProfil> profile = new Vector<TestProfil>();
-		profile.add(new TestProfil("karl", "maennlich", 20, 14, false, 175));
-		profile.add(new TestProfil("tom", "maennlich", 24, 50, true, 182));
-		profile.add(new TestProfil("tim", "maennlich", 21, 43, true, 152));
-		profile.add(new TestProfil("kaaaarl", "maennlich", 50, 77, false, 191));
-		profile.add(new TestProfil("joel", "maennlich", 97, 100, true, 210));
-		profile.add(new TestProfil("max", "maennlich", 15, 10, false, 162));
-		profile.add(new TestProfil("goerg", "maennlich", 55, 57, true, 176));
+		profile.add(new TestProfil("gries","karl", "maennlich", 20, 14, false, 175, "schamanismus"));
+		profile.add(new TestProfil("tomsen","tom", "maennlich", 24, 50, true, 182, "buddismus"));
+		profile.add(new TestProfil("timber","tim", "maennlich", 21, 43, true, 152, "hinduismus"));
+		profile.add(new TestProfil("karlson","kaaaarl", "maennlich", 50, 77, false, 191, "griechisch-orthodox"));
+		profile.add(new TestProfil("siffi","joel", "maennlich", 97, 100, true, 210, "pastafari"));
+		profile.add(new TestProfil("spax","max", "weiblich", 15, 10, false, 162, "atheist"));
+		profile.add(new TestProfil("lauch","goerg", "maennlich", 55, 57, true, 176, "jüdisch"));
 		return profile;
 	}
 	
