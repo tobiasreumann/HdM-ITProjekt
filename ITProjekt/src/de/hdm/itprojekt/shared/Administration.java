@@ -3,6 +3,7 @@ package de.hdm.itprojekt.shared;
 import java.util.Date;
 
 import de.hdm.itprojekt.shared.bo.*;
+
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -44,7 +45,7 @@ public interface Administration extends RemoteService{
 	
 	public void profilLoeschen (Profil p);
 	
-	public Profil profilBearbeiten (Profil p);
+	Profil profilBearbeiten(Profil p);
 	
 	public Info infoHinzufuegen (String wert, Auswahl a, Beschreibung b);
 
