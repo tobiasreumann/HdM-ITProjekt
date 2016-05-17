@@ -11,13 +11,35 @@ import com.google.gwt.user.cellview.client.*;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.*;
+import com.google.gwt.view.client.ProvidesKey;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
+
+import javafx.scene.control.SelectionModel;
 
 public class PartnervorschlagWidget extends Composite {
+	
+ public static final ProvidesKey<TestProfil> KEY_PROVIDER = new ProvidesKey<TestProfil>() {
+      
+      public Object getKey(TestProfil item) {
+        return item == null ? null : item.getId();
+	      }
+	    };
 
 	public PartnervorschlagWidget(Vector<TestProfil> p) {
 
-		CellTable<TestProfil> partnervorschlag = new CellTable<TestProfil>();
-
+		CellTable<TestProfil> partnervorschlag = new CellTable<TestProfil>(KEY_PROVIDER);
+		
+		final SingleSelectionModel<TestProfil> selectionModel = new SingleSelectionModel<TestProfil>(KEY_PROVIDER);
+		
+		selectionModel.addSelectionChangeHandler(new Handler() {
+			
+			public void onSelectionChange(SelectionChangeEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		/**
 		 * Erzeugen der einzelnen Spalten und definieren ihrer Inhalte.
 		 */
@@ -58,7 +80,7 @@ public class PartnervorschlagWidget extends Composite {
 		partnervorschlag.addColumn(aehnlichkeitColumn, "Ähnlichkeit");
 
 	
-		//Sortieren des Vectors nach dem Ähnlichkeitswert (TODO: in Applikationslogik verschieben?)
+		//Sortieren des Vectors nach dem Ähnlichkeitswert der Profile (TODO: in Applikationslogik verschieben?)
 		Collections.sort(p, new Comparator<TestProfil>() {
 			public int compare(TestProfil o1, TestProfil o2) {
 				return o1.getAehnlichkeitswert()-o2.getAehnlichkeitswert();
@@ -90,8 +112,6 @@ public class PartnervorschlagWidget extends Composite {
 
 
 	}
-	public void tabelleFuellen(Vector<TestProfil> p){
-		
-	}
+	
 
 }

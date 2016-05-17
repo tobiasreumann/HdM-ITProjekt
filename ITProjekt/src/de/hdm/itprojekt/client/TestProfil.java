@@ -1,7 +1,7 @@
 package de.hdm.itprojekt.client;
 
 import java.util.Vector;
-
+import java.util.Date;
 
 
 /**
@@ -15,7 +15,7 @@ public class TestProfil {
 	private static String[] raucherArray = new String[] {"ja", "nein"};
 	private String name, vorname, geschlecht, religion;
 	//TODO date datentyp erzeugt compilerfehler
-	//private Date geburtsdatum;
+	private Date geburtsdatum;
 	private int alter;
 	private int aehnlichkeitswert;
 	private boolean raucher;
@@ -23,6 +23,13 @@ public class TestProfil {
 	private Vector<TestInfo> infos = new Vector<TestInfo>();
 	private String haarfarbe;
 	private Vector<TestSuchprofil> suchprofile= new Vector<TestSuchprofil>();
+	private static int nextId = 0;
+
+	private final int id;
+
+	public int getId() {
+		return id;
+	}
 
 	public  String[] getHaarfarbeArray() {
 		return haarfarbeArray;
@@ -52,13 +59,13 @@ public class TestProfil {
 		this.religion = religion;
 	}
 
-//	public Date getGeburtsdatum() {
-//		return geburtsdatum;
-//	}
-//
-//	public void setGeburtsdatum(Date geburtsdatum) {
-//		this.geburtsdatum = geburtsdatum;
-//	}
+	public Date getGeburtsdatum() {
+		return geburtsdatum;
+	}
+
+	public void setGeburtsdatum(Date geburtsdatum) {
+		this.geburtsdatum = geburtsdatum;
+	}
 
 	public boolean isRaucher() {
 		return raucher;
@@ -132,10 +139,14 @@ public class TestProfil {
 		this.raucher = raucher;
 		this.groesse = groesse;
 		this.religion=religion;
+		this.id=nextId;
+		nextId++;
 	}
 
 	public TestProfil() {
 		// TODO Auto-generated constructor stub
+		this.id=nextId;
+		nextId++;
 	}
 
 	public static Vector<TestProfil> getProfile() {
