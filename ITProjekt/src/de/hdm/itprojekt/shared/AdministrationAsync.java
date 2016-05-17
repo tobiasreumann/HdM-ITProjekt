@@ -60,7 +60,7 @@ public interface AdministrationAsync {
 			boolean raucher, String haarfarbe, int k, String religion,
 			AsyncCallback<Profil> callback);
 
-	void profilBearbeiten(Profil p, AsyncCallback<Profil> callback);
+	void profilBearbeiten(AsyncCallback<Profil> callback);
 
 	void suchprofilAnlegen(AsyncCallback<Profil> callback);
 

@@ -5,6 +5,7 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -214,7 +215,6 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			this.profilMapper.loeschen(p);
 		}
 		
-		@Override
 		public Profil profilBearbeiten (Profil p) throws IllegalArgumentException{
 			//TODO
 			return this.profilMapper.bearbeiten();
@@ -291,6 +291,12 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			return this.partnervorschlagMapper.getPartnervorschlaege();
 			//TODO
 		
+		}
+
+		@Override
+		public Profil profilBearbeiten() throws IllegalArgumentException {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 
