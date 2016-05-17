@@ -1,14 +1,14 @@
 package de.hdm.itprojekt.client;
 
 public class TestEigenschaft {
-
-	String eigenschaftBezeichnung;
+	
+	String bezeichnung;
 	
 	public String getBezeichnung(){
-		return eigenschaftBezeichnung;
+		return bezeichnung;
 		}
 	
 	public void setBezeichnung(String b){
-		this.eigenschaftBezeichnung = b;
+		this.bezeichnung = b;
 	}
 }

@@ -1,5 +1,7 @@
 package de.hdm.itprojekt.client;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Vector;
 
@@ -9,13 +11,35 @@ import com.google.gwt.user.cellview.client.*;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.*;
+import com.google.gwt.view.client.ProvidesKey;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
+
+//import javafx.scene.control.SelectionModel;
 
 public class PartnervorschlagWidget extends Composite {
+	
+ public static final ProvidesKey<TestProfil> KEY_PROVIDER = new ProvidesKey<TestProfil>() {
+      
+      public Object getKey(TestProfil item) {
+        return item == null ? null : item.getId();
+	      }
+	    };
 
-	public PartnervorschlagWidget() {
+	public PartnervorschlagWidget(Vector<TestProfil> p) {
 
-		CellTable<TestProfil> partnervorschlag = new CellTable<TestProfil>();
-
+		CellTable<TestProfil> partnervorschlag = new CellTable<TestProfil>(KEY_PROVIDER);
+		
+		final SingleSelectionModel<TestProfil> selectionModel = new SingleSelectionModel<TestProfil>(KEY_PROVIDER);
+		
+//		selectionModel.addSelectionChangeHandler(new Handler() {
+//			
+//			public void onSelectionChange(SelectionChangeEvent event) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		});
+		
 		/**
 		 * Erzeugen der einzelnen Spalten und definieren ihrer Inhalte.
 		 */
@@ -44,6 +68,7 @@ public class PartnervorschlagWidget extends Composite {
 				return object.getAehnlichkeitswert();
 			}
 		};
+		//TODO: weitere Spalten wie "raucher" oder "haarfarbe" hinzufügen"
 
 		/**
 		 * Hinzufügen der Spalten zur Tabelle, in der Reihenfolge von Links nach
@@ -54,10 +79,17 @@ public class PartnervorschlagWidget extends Composite {
 		partnervorschlag.addColumn(alterColumn, "Alter");
 		partnervorschlag.addColumn(aehnlichkeitColumn, "Ähnlichkeit");
 
+	
+		//Sortieren des Vectors nach dem Ähnlichkeitswert der Profile (TODO: in Applikationslogik verschieben?)
+		Collections.sort(p, new Comparator<TestProfil>() {
+			public int compare(TestProfil o1, TestProfil o2) {
+				return o1.getAehnlichkeitswert()-o2.getAehnlichkeitswert();
+			}});
+		
 		/**
-		 * Füllen der Tabellenzeilen mit Werten
+		 * Füllen der Tabellenzeilen mit Werten (TODO)
 		 */
-		partnervorschlag.setRowData(0, TestProfil.getProfile());
+		partnervorschlag.setRowData(0, p);
 
 		/**
 		 * Die Breite der Tabelle wird an die Breite des div-Elements "content"
@@ -80,5 +112,6 @@ public class PartnervorschlagWidget extends Composite {
 
 
 	}
+	
 
 }

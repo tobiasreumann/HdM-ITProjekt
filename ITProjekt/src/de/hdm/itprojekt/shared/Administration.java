@@ -8,7 +8,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 
-@RemoteServiceRelativePath("Administration")
+//@RemoteServiceRelativePath("Administration")
 public interface Administration extends RemoteService{
 
 	public void init ()throws IllegalArgumentException;
