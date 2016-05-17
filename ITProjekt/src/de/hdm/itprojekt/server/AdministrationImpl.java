@@ -3,34 +3,44 @@ package de.hdm.itprojekt.server;
 
 import java.util.Date;
 
+import de.hdm.itprojekt.shared.Administration;
 import de.hdm.itprojekt.shared.bo.*;
 import de.hdm.itprojekt.server.db.*;
 
-public class AdministrationImpl {
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-	public static void main(String[] args) {
-		
-	}
+@SuppressWarnings("serial")
+public class AdministrationImpl extends RemoteServiceServlet implements Administration{
 
-		private  ProfilMapper profilMapper = null;
+	
+		public static void main(String[] args) {
+		}
+
+		private ProfilMapper profilMapper = null;
 		
-		private  MerkzettelMapper merkzettelMapper = null;
+		private MerkzettelMapper merkzettelMapper = null;
 		
 		private SuchprofilMapper suchprofilMapper = null ;
 		
 		private EigenschaftMapper eigenschaftMapper = null ;
 		
-		private  KontaktsperreMapper kontaktsperreMapper = null;
+		private KontaktsperreMapper kontaktsperreMapper = null;
 		
-		private  AuswahlMapper auswahlMapper  = null;
+		private AuswahlMapper auswahlMapper  = null;
 		
-		private  BeschreibungMapper beschreibungMapper = null;
+		private BeschreibungMapper beschreibungMapper = null;
 		
-		private  AehnlichkeitsmassMapper aehnlichkeitsmassMapper  = null;
+		private AehnlichkeitsmassMapper aehnlichkeitsmassMapper  = null;
 		
-		private  PartnervorschlagMapper partnervorschlagMapper  = null;
+		private PartnervorschlagMapper partnervorschlagMapper  = null;
 		
+		private InfoMapper infoMapper = null;
 		
+		public AdministrationImpl() throws IllegalArgumentException {
+			
+		}
+		
+		@Override
 		public void init() throws IllegalArgumentException {
 			
 			this.profilMapper = ProfilMapper.profilMapper();
@@ -49,40 +59,57 @@ public class AdministrationImpl {
 			
 			this.aehnlichkeitsmassMapper = AehnlichkeitsmassMapper.aehnlichkeitsmassMapper();
 			
-			this.partnervorschlagMapper = PartnervorschlagMapper.PartnervorschlagMapper();
+			this.partnervorschlagMapper = PartnervorschlagMapper.partnervorschlagMapper();
 			
+			this.infoMapper = InfoMapper.infoMapper();
+		
+		}
+		
+		@Override
+		public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil rp, Profil vp) throws IllegalArgumentException {
+			return null;
+			//TODO
+			
+		}
+		
+		@Override
+		public Profil getProfilNachID (int id) throws IllegalArgumentException{
+			return this.profilMapper.getByID(id);
+			//TODO
+		}
+
+		@Override
+		public Merkzettel merkzettelAnlegen(Profil p) throws IllegalArgumentException{
+			//TODO
+			Merkzettel m = new Merkzettel ();			
+			// vorläufige ID
+			m.setId(1);
+			
+			return this.merkzettelMapper.anlegen (p);
+			 
 		}
 
 		
+		@Override
+		public void merkzettelLoeschen (Merkzettel m) throws IllegalArgumentException{
+			this.merkzettelMapper.loeschen(m);
+			//TODO
+		}
 		
-		public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil rp, Profil vp)  {
-			//TODO
-			
-		}
-	
-		public Profil getProfilNachID (int id){
-			
-		}
-	
-		public Merkzettel merkzettelAnlegen(Profil p){
-			//TODO
-			Merkzettel m = new Merkzettel ();
+		@Override
+		public Merkzettel zuMerkzettelHinzufuegen (Profil rp) throws IllegalArgumentException{
+			return this.merkzettelMapper.hinzufuegen (rp);
+		//TODO
 			
 		}
 		
-		public void MerkzettelLoeschen (Profil p){
-			//TODO
-		}
-	
-		public Merkzettel zuMerkzettelHinzufuegen (Profil p){
-			//TODO
-		
-			
-		}
-		
-	public Profil profilAnlegen (String vorname, Date g, String name, String geschlecht, boolean raucher, String haarfarbe, int k, String religion){
-			//TODO
+		@Override
+		public Profil profilAnlegen (String vorname, Date g, String name, String geschlecht, boolean raucher, String haarfarbe, int k, String religion)
+		throws IllegalArgumentException{
+			//Verweis auf Fremndschlüssel fehlt 
 			Profil p = new Profil ();
+			//TODO
+			
 			
 			p.setName(name);
 			p.setVorname(vorname);
@@ -91,127 +118,168 @@ public class AdministrationImpl {
 			p.setHaarfarbe (haarfarbe);
 			p.setRaucher(raucher);
 			p.setReligion(religion);
-			p.setGeburtsdatum(g);
+			p.setGeburtsdatum(g);			
+			
+			// vorläufige ID gesetzt
+			p.setId(1);
+			
+			return this.profilMapper.anlegen (p);
+			 
 				
 		}
-	
-		public void vonMerkzettelLoeschen (Profil p){	
-			//TODO
+		
+		@Override
+		public void vonMerkzettelLoeschen (Profil p) throws IllegalArgumentException{	
+			this.merkzettelMapper.entfernen (p);
 		}
 	
-		public Kontaktsperre kontaktsperreAnlegen (Kontaktsperre k){
+		
+		@Override
+		public Kontaktsperre kontaktsperreAnlegen (Kontaktsperre k) throws IllegalArgumentException{
 			//TODO
 			Kontaktsperre k1 = new Kontaktsperre ();
 			
-			k.getId();
+			k.setId(1);
 			k.getGesperrt();
+			return this.kontaktsperreMapper.anlegen(k);
 			
 			
 		}
+	
+		@Override
+		public void kontaktsperreLoeschen (Profil p) throws IllegalArgumentException{
+			this.kontaktsperreMapper.loeschen (p);
 
-		public void KontaktsperreLoeschen (Profil p){
-			//TODO
 		}
 		
-		public Beschreibung beschreibungEigenschaftAnlegen (Eigenschaft e){
+		@Override
+		public Beschreibung beschreibungEigenschaftAnlegen (Eigenschaft e) throws IllegalArgumentException{
 			//TODO
 			Eigenschaft e1 = new Eigenschaft ();
 			
 			e.getBezeichnung();
+			return this.beschreibungMapper.anlegen();
+		}
+		
+		@Override
+		public void eigenschaftLoeschen (Auswahl a, Beschreibung b, Eigenschaft e) throws IllegalArgumentException{
+			//TODO
+			this.eigenschaftMapper.loeschen();
+		}
+		
+		@Override
+		public Beschreibung beschreibungEigenschaftBearbeiten (Eigenschaft e) throws IllegalArgumentException{
+			return this.beschreibungMapper.bearbeiten(e);
+			//TODO
 			
 		}
 		
-		public void eigenschaftLoeschen (Auswahl a, Beschreibung b, Eigenschaft e){
-			//TODO
-		}
-		
-		public Beschreibung beschreibungEigenschaftBearbeiten (Eigenschaft e){
-			
-			//TODO
-			
-		}
-		
-	
-		//Klasse muss angelegt werden
-		 public Profil suchprofilAnlegen (){
-			//TODO
+		@Override
+		public Profil suchprofilAnlegen () throws IllegalArgumentException{
 			Suchprofil sp = new Suchprofil();
-			}
-		
-		public void suchprofilLoeschen (Suchprofil sp){
-			//TODO
+			return this.suchprofilMapper.anlegen (sp);
+
 		}
 		
-		public Profil suchprofilBearbeiten (){
+		@Override
+		public void suchprofilLoeschen (Suchprofil sp) throws IllegalArgumentException{
+			//TODO
+			this.suchprofilMapper.loeschen(sp);
+		}
+		
+		@Override
+		public Profil suchprofilBearbeiten () throws IllegalArgumentException{
+			return this.suchprofilMapper.bearbeiten();
 			//TODO
 	
 		}
 		
-	
-		 
+		@Override
 		public void profilLoeschen (Profil p)throws IllegalArgumentException {
 			//TODO
+			this.profilMapper.loeschen(p);
 		}
 		
-		public Profil profilBearbeiten (){
+		@Override
+		public Profil profilBearbeiten () throws IllegalArgumentException{
 			//TODO
+			return this.profilMapper.bearbeiten();
 		}
 		
-		public Info infoHinzufuegen (String wert, Auswahl a, Beschreibung b){
-			
+		@Override
+		public Info infoHinzufuegen (String wert, Auswahl a, Beschreibung b) throws IllegalArgumentException{
+			//TODO
 			Info i = new Info ();
 			i.setWert(wert);
+			
 	
+			return this.infoMapper.anlegen();
+		}
+		
+		@Override
+		public void infoLoeschen (Info i) throws IllegalArgumentException{
+			this.infoMapper.loeschen(i);
 			//TODO
+		}
+	
+		@Override
+		public Info infoBearbeiten (String w, Auswahl a, Beschreibung b) throws IllegalArgumentException{
+			//TODO
+			return this.infoMapper.bearbeiten();
+		}
+	
+		@Override
+		public Merkzettel getMerkzettelNachID (int id) throws IllegalArgumentException{
+			return this.merkzettelMapper.getByID(id);
+			//TODO
+		
+		}
+	
+		@Override
+		public Kontaktsperre getKontaktsperreNachID (int id) throws IllegalArgumentException{
+			//TODO
+			return this.kontaktsperreMapper.getByID(id);
+		}
+		
+		@Override
+		public Kontaktsperre zuKontaktsperreHinzufuegen (Profil p) throws IllegalArgumentException{
+			//TODO
+			return this.kontaktsperreMapper.hinzufuegen(p);
+		}
+		
+		@Override
+		public void vonKontaktsperreLoeschen (Profil p) throws IllegalArgumentException{
+			this.kontaktsperreMapper.entfernen(p);
+			//TODO
+		}
+		
+		@Override
+		public Suchprofil getSuchprofilNachID (int id) throws IllegalArgumentException{
+			//TODO
+			return this.suchprofilMapper.getByID(id);
+		}
+		
+		@Override
+		public Auswahl AuswahlEigenschaftAnlegen (Eigenschaft e) throws IllegalArgumentException{
+			return this.auswahlMapper.anlegen();
+			//TODO
+		}
+		
+		@Override
+		public Auswahl AuswahlEigenschaftBearbeiten (Eigenschaft e) throws IllegalArgumentException{
+			return this.eigenschaftMapper.bearbeiten();
 			
 		}
-
-		public void infoLoeschen (Info i){
-			//TODO
-		}
-	
-		public Info infoBearbeiten (String w, Auswahl a, Beschreibung b){
-			//TODO
-		}
-	
-		public Merkzettel getMerkzettelNachID (int id){
-			//TODO
-		}
-	
-		public Kontaktsperre getKontaktsperreNachID (int id){
-			//TODO
-		}
 		
-		public Kontaktsperre zuKontaktsperreHinzufuegen (Profil p){
-			//TODO
-		}
-	
-		public void vonKontaktsperreLoeschen (Profil p){
-			//TODO
-		}
-	
-		public Suchprofil getSuchprofilNachID (int id){
-			//TODO
-		}
-		
-		// in () muss String [] hinein
-		public Auswahl AuswahlEigenschaftAnlegen (Eigenschaft e){
-			//TODO
-		}
-		
-		// in () muss String [] hinein
-		public Auswahl AuswahlEigenschaftBearbeiten (Eigenschaft e){
-			//TODO
-		}
-		
-		public Partnervorschlag getPartnervorschlaege (Suchprofil sp){
-			
+		@Override
+		public Partnervorschlag getPartnervorschlaege (Suchprofil sp) throws IllegalArgumentException{
+			return this.partnervorschlagMapper.getPartnervorschlaege();
 			//TODO
 		}
 
 		
 		/*
-		 * Editorimple Methode
+		 * 
 		 * 
 		 * Login Methode
 		 * 
