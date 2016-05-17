@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.*;
 
 public class PartnervorschlagWidget extends Composite {
 
-	public PartnervorschlagWidget() {
+	public PartnervorschlagWidget(Vector<TestProfil> p) {
 
 		CellTable<TestProfil> partnervorschlag = new CellTable<TestProfil>();
 
@@ -44,6 +44,7 @@ public class PartnervorschlagWidget extends Composite {
 				return object.getAehnlichkeitswert();
 			}
 		};
+		//TODO: weitere Spalten wie "raucher" oder "haarfarbe" hinzufügen"
 
 		/**
 		 * Hinzufügen der Spalten zur Tabelle, in der Reihenfolge von Links nach
@@ -55,9 +56,10 @@ public class PartnervorschlagWidget extends Composite {
 		partnervorschlag.addColumn(aehnlichkeitColumn, "Ähnlichkeit");
 
 		/**
-		 * Füllen der Tabellenzeilen mit Werten
+		 * Füllen der Tabellenzeilen mit Werten (TODO)
 		 */
-		partnervorschlag.setRowData(0, TestProfil.getProfile());
+		//partnervorschlag.setRowData(0, TestProfil.getProfile());
+		partnervorschlag.setRowData(0, p);
 
 		/**
 		 * Die Breite der Tabelle wird an die Breite des div-Elements "content"
@@ -79,6 +81,9 @@ public class PartnervorschlagWidget extends Composite {
 		 */
 
 
+	}
+	public void tabelleFuellen(Vector<TestProfil> p){
+		
 	}
 
 }

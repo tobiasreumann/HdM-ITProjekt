@@ -3,16 +3,37 @@ package de.hdm.itprojekt.client;
 import java.util.Vector;
 
 public class TestSuchprofil {
+	private String name;
 	private int alterMin;
 	private int alterMax;
-	private String[] haarfarbe = new String[] {"egal", "blond", "rot", "braun", "schwarz"};
-	private String[] geschlecht = new String[] {"egal", "maennlich", "weiblich"};
-	private String[] raucher = new String[] {"egal", "ja", "nein"};
+	private static String[] haarfarbe = new String[] {"egal", "blond", "rot", "braun", "schwarz"};
+	private static String[] geschlecht = new String[] {"egal", "maennlich", "weiblich"};
+	private static String[] raucher = new String[] {"egal", "ja", "nein"};
 	private String haarfarbeAuswahl;
 	private String geschlechtAuswahl;
 	private boolean raucherAuswahl;
-	private String raucherEgal;
-	private Vector<TestSuchprofil> suchprofile= new Vector<TestSuchprofil>();
+	private String raucherEgal=null;
+	
+
+	public String[] getHaarfarbe() {
+		return haarfarbe;
+	}
+
+	public String[] getGeschlecht() {
+		return geschlecht;
+	}
+
+	public String[] getRaucher() {
+		return raucher;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getRaucherEgal() {
 		return raucherEgal;
@@ -61,19 +82,29 @@ public class TestSuchprofil {
 	public void setRaucherAuswahl(boolean raucherAuswahl) {
 		this.raucherAuswahl = raucherAuswahl;
 	}
-
-	public Vector<TestSuchprofil> getSuchprofile() {
-		return suchprofile;
+	public String getRaucherAuswahl (){
+		String s = null;
+		if (raucherEgal.equals("egal")){
+			s= "egal";
+			return s;
+		}
+		else{
+			if(raucherAuswahl==true){
+				s="ja";
+			}
+			else {
+				s="nein";
+			}
+			return s;
+		}
 	}
 
-	public void setSuchprofile(Vector<TestSuchprofil> suchprofile) {
-		this.suchprofile = suchprofile;
-	}
+
 	
-	public Vector<TestProfil> suchergebnis(Vector<TestProfil> profile, TestSuchprofil suchprofil){
+	public static Vector<TestProfil> suchergebnis(Vector<TestProfil> profile, TestSuchprofil suchprofil){
 		Vector<TestProfil> ergebnis = new Vector<TestProfil>();
 		
-		for (int i=0; i<= profile.capacity(); i++ ){
+		for (int i=0; i< profile.size(); i++ ){
 			
 			
 			//-------------------------------------
