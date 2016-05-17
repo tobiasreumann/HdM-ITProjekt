@@ -2,8 +2,10 @@ package de.hdm.itprojekt.client;
 
 import java.util.Vector;
 
+import com.google.gwt.core.client.Callback;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 
@@ -146,33 +148,7 @@ private DialogBox createDpBox(){
 
 
 
-//Erstellen der DialogBoxen
 
-	
-	
-	
-	
-	
-//	public void reloadDialogBoxen(){
-//		
-//		DialogBox newDpBox = new DialogBox();
-//		DialogBox newDiBox = new DialogBox();
-//		
-//		newDpBox = createDpBox();
-//		newDiBox = createDiBox();
-//
-//		this.dialogBox = newDiBox;
-//		this.dpBox = newDpBox;
-//	}		
-
-
-
-
-		
-
-		
-
-	
 		
 //-----------------------------------------------------------------
 //Konstruktor zum erzeugen des Info- Widget!
@@ -185,7 +161,7 @@ private DialogBox createDpBox(){
 		final DialogBox dialogBox = createDiBox();
 		
 // TEST: PROFIL ANLEGEN UM DARIN INFOS ZU SPEICHERN
-		final TestProfil neuesProfil= new TestProfil("tobra", "maennlich", 28, 14, false, 175);		
+		final TestProfil neuesProfil= new TestProfil("cobra", "tobra", "maennlich", 28, 14, false, 175, "rastafari");		
 		
 		
 // erstellen einer neuen Instanz von Info
@@ -234,10 +210,38 @@ private DialogBox createDpBox(){
 		    
 		esButton.addClickHandler(new ClickHandler(){
 		public void onClick(ClickEvent event) {								
-						
+		
+			
+		//	Wenn die Eigenschaft die angelegt werden soll bereits existiert soll eine Fehlermeldung ausgegeben werden
+		for(int i = 0; i<neueInfo.getEigenschaften().size(); i++){
+			if (neueInfo.getEigenschaften().get(i).getBezeichnung().equals(newEigenschaftBox.getValue())){
+				DialogBox error = new DialogBox();
+				error.setText("Error");
+				Label errorLabel = new Label("Die Eigenschaft existiert bereits!");
+				error.add(errorLabel);
+				error.center();
+				error.show();
+				error.setAutoHideEnabled(true);
+				return;
+			}
+				
+		}
+			
+		
+		if (newEigenschaftBox.getValue() == ""){
+				DialogBox error = new DialogBox();
+				error.setText("Error");
+				Label errorLabel = new Label("Sie haben der Eigenchaft noch keinen Namen gegeben.");
+				error.add(errorLabel);
+				error.center();
+				error.show();
+				error.setAutoHideEnabled(true);
+				return;
+				
+		} else{
 		//	Wenn "Beschreibungs-Feld" angegeben ist wird ein neues BeschreibungsFeld hinzugefügt
 						
-		if(auswahlBox.getValue(auswahlBox.getSelectedIndex()).equals("Eingabefeld") ){
+		if(auswahlBox.getValue(auswahlBox.getSelectedIndex()).equals("Eingabefeld") && newEigenschaftBox.getValue() != ""){
 		
 			TextBox uebergabeBox = new TextBox();
 			// Erzeugt eine neue Eigenschaft und setzt deren Bezeichnung
@@ -255,9 +259,9 @@ private DialogBox createDpBox(){
 			
 		addRow(infoTable, uebergabeBox , newEigenschaftBox.getValue());
 		
-
 		
 		dialogBox.hide();
+		
 						
 		// Wenn "DropDown-Feld" angegeben ist wird eine neue DialogBox angezeigt. 
 		//	In dieser Box können die Auswahloptionen eingetragen werden.	
@@ -268,6 +272,7 @@ private DialogBox createDpBox(){
 		dpBox.setAnimationEnabled(true);
 		dpBox.center();
 		dpBox.show();
+				}
 			}
 		}		
 	});
@@ -280,7 +285,8 @@ private DialogBox createDpBox(){
 		public void onClick(ClickEvent event) {
 		dpBox.hide();
 		dialogBox.hide();
-		}	
+		}
+		
 	});
 								
 /**
@@ -436,6 +442,26 @@ private DialogBox createDpBox(){
 		
 		// Alle einzelnen Widgets im Panel "infoWidgetPanel" werden nun als ein Widget initialisiert
 	    initWidget(infoWidgetPanel);	      				
+	}
+	
+}
+
+// ----------------------------------
+// Callbacks
+// ----------------------------------
+
+class getInformationCallback implements AsyncCallback{
+
+	@Override
+	public void onFailure(Throwable caught) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSuccess(Object result) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

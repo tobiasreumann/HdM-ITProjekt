@@ -65,7 +65,7 @@ public interface AdministrationAsync {
 	void suchprofilAnlegen(AsyncCallback<Profil> callback);
 
 	void profilLoeschen(Profil p, AsyncCallback<Void> callback);
-
+	
 	void suchprofilBearbeiten(AsyncCallback<Profil> callback);
 
 	void vonMerkzettelLoeschen(Profil p, AsyncCallback<Void> callback);

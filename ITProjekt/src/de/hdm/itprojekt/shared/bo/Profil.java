@@ -22,8 +22,18 @@ public class Profil extends BusinessObject{
 	
 	private String Geschlecht;
 	
+	private String email;
+	
 	public Profil(){
 		
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 
