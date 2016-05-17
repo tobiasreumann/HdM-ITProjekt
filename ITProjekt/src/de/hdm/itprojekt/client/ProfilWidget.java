@@ -12,21 +12,17 @@ public class ProfilWidget extends Composite{
 	
 	
 	AdministrationAsync administration = ClientsideSettings.getAdministration();
-	
 
 
-	VerticalPanel profilWidgetPanel = new VerticalPanel();
-	
+	VerticalPanel profilWidgetPanel = new VerticalPanel();	
 	TextBox vNameBeschreibung = new TextBox();
 	TextBox nNameBeschreibung = new TextBox();
 	TextBox gebBeschreibung = new TextBox();
 	TextBox groesseBeschreibung = new TextBox();
-	TextBox religionBeschreibung = new TextBox();
-	
+	TextBox religionBeschreibung = new TextBox();	
 	ListBox geschlechtAuswahl = new ListBox();
 	ListBox haarAuswahl = new ListBox();
-	ListBox raucherAuswahl = new ListBox();
-	
+	ListBox raucherAuswahl = new ListBox();	
 	Button speicherButton = new Button("Speichern");
 
 	
@@ -121,7 +117,6 @@ class ProfilBearbeitenCallback implements AsyncCallback<Profil>{
 	public void onSuccess(Profil result) {
 		// TODO Auto-generated method stub
 		Profil profil = null;
-		
 
 		}
 	}
