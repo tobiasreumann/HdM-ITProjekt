@@ -2,20 +2,19 @@ package de.hdm.itprojekt.client;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Vector;
 
 import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.cellview.client.*;
+import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.view.client.ProvidesKey;
 import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
-
-import javafx.scene.control.SelectionModel;
 
 public class PartnervorschlagWidget extends Composite {
 	
@@ -30,19 +29,38 @@ public class PartnervorschlagWidget extends Composite {
 
 		CellTable<TestProfil> partnervorschlag = new CellTable<TestProfil>(KEY_PROVIDER);
 		
+		/*
+		 * Das SelectionModel wird zur Tabelle der Partnervorschläge hinzugefügt und gewährleistet, ähnlich einem ClickHandler, dass beim Klicken auf eine Tabellenzeile das jeweilige Objekt zurückgegeben wird.
+		 */
 		final SingleSelectionModel<TestProfil> selectionModel = new SingleSelectionModel<TestProfil>(KEY_PROVIDER);
 		
+		partnervorschlag.setSelectionModel(selectionModel);
+		
+		/*
+		 * Das durch den SelectionHandler zurückgegebene Profil wird an eine Instanz des ProfilWidgets übergeben. Das ProfilWidget wird einer Diaglogbox hinzugefügt, die das Profil für den Nutzer anzeigt.
+		 */
 		selectionModel.addSelectionChangeHandler(new Handler() {
-			
 			public void onSelectionChange(SelectionChangeEvent event) {
-				// TODO Auto-generated method stub
-				
+				Vector<TestProfil> ausgewaehltesProfil = new Vector<TestProfil>();
+				ausgewaehltesProfil.addElement(selectionModel.getSelectedObject());
+				DialogBox profilAnzeige = new DialogBox();
+				ProfilWidget profilWidget = new ProfilWidget(ausgewaehltesProfil);
+				profilAnzeige.add(profilWidget);
+				profilAnzeige.setAutoHideEnabled(true);
+				profilAnzeige.center();
+				profilAnzeige.show();
 			}
 		});
 		
 		/**
 		 * Erzeugen der einzelnen Spalten und definieren ihrer Inhalte.
 		 */
+		TextColumn<TestProfil> vnameColumn = new TextColumn<TestProfil>() {
+			public String getValue(TestProfil object) {
+				return object.getVorname();
+			}
+		};
+		
 		TextColumn<TestProfil> nameColumn = new TextColumn<TestProfil>() {
 			public String getValue(TestProfil object) {
 				return object.getName();
@@ -54,11 +72,25 @@ public class PartnervorschlagWidget extends Composite {
 				return object.getGeschlecht();
 			}
 		};
+		TextColumn<TestProfil> haarfarbeColumn = new TextColumn<TestProfil>() {
+			public String getValue(TestProfil object) {
+				return object.getHaarfarbe();
+			}
+		};
 
 		Column<TestProfil, Number> alterColumn = new Column<TestProfil, Number>(new NumberCell()) {
 			public Number getValue(TestProfil object) {
 
 				return object.getAlter();
+			}
+		};
+		TextColumn<TestProfil> raucherColumn = new TextColumn<TestProfil>() {
+			public String getValue(TestProfil object) {
+				if (object.isRaucher()) {
+					return "ja";
+				} else {
+					return "nein";
+				}
 			}
 		};
 
@@ -74,8 +106,11 @@ public class PartnervorschlagWidget extends Composite {
 		 * Hinzufügen der Spalten zur Tabelle, in der Reihenfolge von Links nach
 		 * Rechts. Definition der Spaltennamen.
 		 */
+		partnervorschlag.addColumn(vnameColumn, "Vorname");
 		partnervorschlag.addColumn(nameColumn, "Name");
 		partnervorschlag.addColumn(geschlechtColumn, "Geschlecht");
+		partnervorschlag.addColumn(raucherColumn, "Raucher");
+		partnervorschlag.addColumn(haarfarbeColumn, "Haarfarbe");
 		partnervorschlag.addColumn(alterColumn, "Alter");
 		partnervorschlag.addColumn(aehnlichkeitColumn, "Ähnlichkeit");
 
@@ -90,6 +125,7 @@ public class PartnervorschlagWidget extends Composite {
 		 * Füllen der Tabellenzeilen mit Werten (TODO)
 		 */
 		partnervorschlag.setRowData(0, p);
+		
 
 		/**
 		 * Die Breite der Tabelle wird an die Breite des div-Elements "content"
