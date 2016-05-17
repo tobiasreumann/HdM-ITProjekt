@@ -1,5 +1,14 @@
 
 package de.hdm.itprojekt.server;
+import com.google.api.server.spi.Client;
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 import java.util.Date;
 
@@ -7,14 +16,12 @@ import de.hdm.itprojekt.shared.Administration;
 import de.hdm.itprojekt.shared.bo.*;
 import de.hdm.itprojekt.server.db.*;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 @SuppressWarnings("serial")
 public class AdministrationImpl extends RemoteServiceServlet implements Administration{
 
 	
-		public static void main(String[] args) {
-		}
+	
 
 		private ProfilMapper profilMapper = null;
 		
@@ -64,7 +71,8 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			this.infoMapper = InfoMapper.infoMapper();
 		
 		}
-		
+	
+
 		@Override
 		public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil rp, Profil vp) throws IllegalArgumentException {
 			return null;
@@ -118,12 +126,18 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			p.setHaarfarbe (haarfarbe);
 			p.setRaucher(raucher);
 			p.setReligion(religion);
-			p.setGeburtsdatum(g);			
+			p.setGeburtsdatum(g);	
+			//TODO
+			//Email muss noch zum setten hin
+			
+			ServersideSettings.getLogger();
+			ServersideSettings.getLogger().info("Profil " + p.getVorname() +  " p.getName"+ " angelegt");
 			
 			// vorläufige ID gesetzt
 			p.setId(1);
 			
 			return this.profilMapper.anlegen (p);
+			
 			 
 				
 		}
@@ -275,6 +289,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		public Partnervorschlag getPartnervorschlaege (Suchprofil sp) throws IllegalArgumentException{
 			return this.partnervorschlagMapper.getPartnervorschlaege();
 			//TODO
+		
 		}
 
 		

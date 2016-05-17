@@ -1,6 +1,6 @@
 package de.hdm.itprojekt.client;
 
-import de.hdm.itprojekt.shared.FieldVerifier;
+
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
