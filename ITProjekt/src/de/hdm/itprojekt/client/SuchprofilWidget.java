@@ -231,6 +231,7 @@ public class SuchprofilWidget extends Composite {
 			haarfarbe.addItem(v.firstElement().getHaarfarbeAuswahl());
 			geschlecht.addItem(v.firstElement().getGeschlechtAuswahl());
 			raucher.addItem(v.firstElement().getRaucherAuswahl());
+			
 		}
 		alterMin.setEnabled(false);
 		alterMax.setEnabled(false);
@@ -312,6 +313,7 @@ public class SuchprofilWidget extends Composite {
 			return;
 		}
 		v.addElement(neuesProfil);
+		
 		urprofil.setSuchprofile(v);
 		werteEinfuegen(v);
 		// TODO: An dieser Stelle muss der Suchprofil-Vector an das Profil des
