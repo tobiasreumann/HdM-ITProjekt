@@ -90,7 +90,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		public Merkzettel merkzettelAnlegen(Profil p) throws IllegalArgumentException{
 			//TODO
 			Merkzettel m = new Merkzettel ();			
-			// vorläufige ID
+			// vorlï¿½ufige ID
 			m.setId(1);
 			
 			return this.merkzettelMapper.anlegen (p);
@@ -114,7 +114,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		@Override
 		public Profil profilAnlegen (String vorname, Date g, String name, String geschlecht, boolean raucher, String haarfarbe, int k, String religion)
 		throws IllegalArgumentException{
-			//Verweis auf Fremndschlüssel fehlt 
+			//Verweis auf Fremndschlï¿½ssel fehlt 
 			Profil p = new Profil ();
 			//TODO
 			
@@ -133,7 +133,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			ServersideSettings.getLogger();
 			ServersideSettings.getLogger().info("Profil " + p.getVorname() +  " p.getName"+ " angelegt");
 			
-			// vorläufige ID gesetzt
+			// vorlï¿½ufige ID gesetzt
 			p.setId(1);
 			
 			return this.profilMapper.anlegen (p);
@@ -215,10 +215,11 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		}
 		
 		@Override
-		public Profil profilBearbeiten () throws IllegalArgumentException{
+		public Profil profilBearbeiten (Profil p) throws IllegalArgumentException{
 			//TODO
 			return this.profilMapper.bearbeiten();
 		}
+		
 		
 		@Override
 		public Info infoHinzufuegen (String wert, Auswahl a, Beschreibung b) throws IllegalArgumentException{
@@ -291,6 +292,8 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			//TODO
 		
 		}
+
+
 
 		
 		/*

@@ -46,7 +46,11 @@ public interface Administration extends RemoteService{
 	
 	public void profilLoeschen (Profil p)throws IllegalArgumentException;
 	
+
 	public Profil profilBearbeiten ()throws IllegalArgumentException;
+
+
+
 	
 	public Info infoHinzufuegen (String wert, Auswahl a, Beschreibung b)throws IllegalArgumentException;
 

@@ -68,26 +68,26 @@ public class PartnervorschlagWidget extends Composite {
 				return object.getAehnlichkeitswert();
 			}
 		};
-		//TODO: weitere Spalten wie "raucher" oder "haarfarbe" hinzufügen"
+		//TODO: weitere Spalten wie "raucher" oder "haarfarbe" hinzufï¿½gen"
 
 		/**
-		 * Hinzufügen der Spalten zur Tabelle, in der Reihenfolge von Links nach
+		 * Hinzufï¿½gen der Spalten zur Tabelle, in der Reihenfolge von Links nach
 		 * Rechts. Definition der Spaltennamen.
 		 */
 		partnervorschlag.addColumn(nameColumn, "Name");
 		partnervorschlag.addColumn(geschlechtColumn, "Geschlecht");
 		partnervorschlag.addColumn(alterColumn, "Alter");
-		partnervorschlag.addColumn(aehnlichkeitColumn, "Ähnlichkeit");
+		partnervorschlag.addColumn(aehnlichkeitColumn, "ï¿½hnlichkeit");
 
 	
-		//Sortieren des Vectors nach dem Ähnlichkeitswert der Profile (TODO: in Applikationslogik verschieben?)
+		//Sortieren des Vectors nach dem ï¿½hnlichkeitswert der Profile (TODO: in Applikationslogik verschieben?)
 		Collections.sort(p, new Comparator<TestProfil>() {
 			public int compare(TestProfil o1, TestProfil o2) {
 				return o1.getAehnlichkeitswert()-o2.getAehnlichkeitswert();
 			}});
 		
 		/**
-		 * Füllen der Tabellenzeilen mit Werten (TODO)
+		 * Fï¿½llen der Tabellenzeilen mit Werten (TODO)
 		 */
 		partnervorschlag.setRowData(0, p);
 
@@ -104,7 +104,7 @@ public class PartnervorschlagWidget extends Composite {
 
 		
 		/**------------------------------------------------------------------
-		 * TODO: Clickhandler zu Tabellenzeilen hinzufügen um das jeweilige
+		 * TODO: Clickhandler zu Tabellenzeilen hinzufï¿½gen um das jeweilige
 		 * Nutzerprofil anzuzeigen.
 		 * 
 		 * TODO: Tabelle scrollbar machen.
