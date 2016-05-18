@@ -114,7 +114,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			p.setName(name);
 			p.setVorname(vorname);
 			p.setGeschlecht(geschlecht);
-			p.setKoerpergroesse(k);
+			p.setGroesse(k);
 			p.setHaarfarbe (haarfarbe);
 			p.setRaucher(raucher);
 			p.setReligion(religion);

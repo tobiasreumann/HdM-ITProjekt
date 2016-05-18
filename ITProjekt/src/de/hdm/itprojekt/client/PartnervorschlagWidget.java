@@ -53,6 +53,7 @@ public class PartnervorschlagWidget extends Composite {
 				profilAnzeige.setAutoHideEnabled(true);
 				profilAnzeige.center();
 				profilAnzeige.show();
+				//TODO: Profil als angesehen vermerken.
 			}
 		});
 
