@@ -78,6 +78,9 @@ public interface AdministrationAsync {
 	void suchprofilLoeschen(Suchprofil sp, AsyncCallback<Void> callback);
 
 	void zuMerkzettelHinzufuegen(Profil p, AsyncCallback<Merkzettel> callback);
+		
+	//falss ein Fehler hier ist, s. gwtproject.org
+	void login(String requestUri, AsyncCallback<Profil> callback);
 	
 
 }

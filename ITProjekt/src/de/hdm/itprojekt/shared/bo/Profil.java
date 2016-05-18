@@ -22,19 +22,20 @@ public class Profil extends BusinessObject{
 	
 	private String Geschlecht;
 	
-	private String email;
+	
+	private boolean loggedIn = false;
+	  
+	private String loginUrl;
+	  
+	private String logoutUrl;
+	  
+	private String emailAddress;
+	
 	
 	public Profil(){
 		
 	}
 	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 
 	public String getName() {
@@ -99,6 +100,46 @@ public class Profil extends BusinessObject{
 
 	public void setGeschlecht(String geschlecht) {
 		Geschlecht = geschlecht;
+	}
+
+
+
+	public String getLoginUrl() {
+		return loginUrl;
+	}
+
+	public void setLoginUrl(String loginUrl) {
+		this.loginUrl = loginUrl;
+	}
+
+	public String getLogoutUrl() {
+		return logoutUrl;
+	}
+
+	public void setLogoutUrl(String logoutUrl) {
+		this.logoutUrl = logoutUrl;
+	}
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+
+
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 	
 	

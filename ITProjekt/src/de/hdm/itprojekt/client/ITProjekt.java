@@ -61,6 +61,8 @@ public class ITProjekt implements EntryPoint {
 	 */
 
 	public void onModuleLoad() {
+		
+		
 
 		// Fügt die Menüleiste hinzu
 		VerticalPanel hpanel = new VerticalPanel();
