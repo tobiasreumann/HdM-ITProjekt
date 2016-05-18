@@ -17,27 +17,31 @@ import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class PartnervorschlagWidget extends Composite {
-	
- public static final ProvidesKey<TestProfil> KEY_PROVIDER = new ProvidesKey<TestProfil>() {
-      
-      public Object getKey(TestProfil item) {
-        return item == null ? null : item.getId();
-	      }
-	    };
+
+	public static final ProvidesKey<TestProfil> KEY_PROVIDER = new ProvidesKey<TestProfil>() {
+
+		public Object getKey(TestProfil item) {
+			return item == null ? null : item.getId();
+		}
+	};
 
 	public PartnervorschlagWidget(Vector<TestProfil> p) {
 
 		CellTable<TestProfil> partnervorschlag = new CellTable<TestProfil>(KEY_PROVIDER);
-		
+
 		/*
-		 * Das SelectionModel wird zur Tabelle der Partnervorschläge hinzugefügt und gewährleistet, ähnlich einem ClickHandler, dass beim Klicken auf eine Tabellenzeile das jeweilige Objekt zurückgegeben wird.
+		 * Das SelectionModel wird zur Tabelle der Partnervorschläge hinzugefügt
+		 * und gewährleistet, ähnlich einem ClickHandler, dass beim Klicken auf
+		 * eine Tabellenzeile das jeweilige Objekt zurückgegeben wird.
 		 */
 		final SingleSelectionModel<TestProfil> selectionModel = new SingleSelectionModel<TestProfil>(KEY_PROVIDER);
-		
+
 		partnervorschlag.setSelectionModel(selectionModel);
-		
+
 		/*
-		 * Das durch den SelectionHandler zurückgegebene Profil wird an eine Instanz des ProfilWidgets übergeben. Das ProfilWidget wird einer Diaglogbox hinzugefügt, die das Profil für den Nutzer anzeigt.
+		 * Das durch den SelectionHandler zurückgegebene Profil wird an eine
+		 * Instanz des ProfilWidgets übergeben. Das ProfilWidget wird einer
+		 * Diaglogbox hinzugefügt, die das Profil für den Nutzer anzeigt.
 		 */
 		selectionModel.addSelectionChangeHandler(new Handler() {
 			public void onSelectionChange(SelectionChangeEvent event) {
@@ -51,7 +55,7 @@ public class PartnervorschlagWidget extends Composite {
 				profilAnzeige.show();
 			}
 		});
-		
+
 		/**
 		 * Erzeugen der einzelnen Spalten und definieren ihrer Inhalte.
 		 */
@@ -60,7 +64,7 @@ public class PartnervorschlagWidget extends Composite {
 				return object.getVorname();
 			}
 		};
-		
+
 		TextColumn<TestProfil> nameColumn = new TextColumn<TestProfil>() {
 			public String getValue(TestProfil object) {
 				return object.getName();
@@ -100,7 +104,7 @@ public class PartnervorschlagWidget extends Composite {
 				return object.getAehnlichkeitswert();
 			}
 		};
-		//TODO: weitere Spalten wie "raucher" oder "haarfarbe" hinzufügen"
+		// TODO: weitere Spalten wie "raucher" oder "haarfarbe" hinzufügen"
 
 		/**
 		 * Hinzufügen der Spalten zur Tabelle, in der Reihenfolge von Links nach
@@ -114,18 +118,18 @@ public class PartnervorschlagWidget extends Composite {
 		partnervorschlag.addColumn(alterColumn, "Alter");
 		partnervorschlag.addColumn(aehnlichkeitColumn, "Ähnlichkeit");
 
-	
-		//Sortieren des Vectors nach dem Ähnlichkeitswert der Profile (TODO: in Applikationslogik verschieben?)
+		// Sortieren des Vectors nach dem Ähnlichkeitswert der Profile (TODO: in
+		// Applikationslogik verschieben?)
 		Collections.sort(p, new Comparator<TestProfil>() {
 			public int compare(TestProfil o1, TestProfil o2) {
-				return o1.getAehnlichkeitswert()-o2.getAehnlichkeitswert();
-			}});
-		
+				return o1.getAehnlichkeitswert() - o2.getAehnlichkeitswert();
+			}
+		});
+
 		/**
 		 * Füllen der Tabellenzeilen mit Werten (TODO)
 		 */
 		partnervorschlag.setRowData(0, p);
-		
 
 		/**
 		 * Die Breite der Tabelle wird an die Breite des div-Elements "content"
@@ -138,16 +142,14 @@ public class PartnervorschlagWidget extends Composite {
 
 		initWidget(partnervorschlag);
 
-		
-		/**------------------------------------------------------------------
+		/**
+		 * ------------------------------------------------------------------
 		 * TODO: Clickhandler zu Tabellenzeilen hinzufügen um das jeweilige
 		 * Nutzerprofil anzuzeigen.
 		 * 
 		 * TODO: Tabelle scrollbar machen.
 		 */
 
-
 	}
-	
 
 }
