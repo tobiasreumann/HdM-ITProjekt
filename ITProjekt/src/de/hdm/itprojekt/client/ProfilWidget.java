@@ -110,7 +110,7 @@ public class ProfilWidget extends Composite {
 
 		merkbutton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				//TODO: Profil zur Merkliste hinzufügen
+				//TODO: Profil zur Merkliste hinzufï¿½gen
 			}
 		});
 		
@@ -122,7 +122,7 @@ public class ProfilWidget extends Composite {
 	public void profilwerteAnzeigen(TestProfil t) {
 
 		/**
-		 * Einfügen der gesetzten Eigenschaften des jeweiligen Nutzerprofils
+		 * Einfï¿½gen der gesetzten Eigenschaften des jeweiligen Nutzerprofils
 		 */
 
 		geschlechtAuswahl.addItem(t.getGeschlecht());
@@ -152,7 +152,7 @@ public class ProfilWidget extends Composite {
 	}
 
 	public void auswahlwerteEinfuegen(TestProfil t) {
-		// Setzen der Änderbarkeit der Eingabefelder
+		// Setzen der ï¿½nderbarkeit der Eingabefelder
 		geschlechtAuswahl.setEnabled(true);
 		haarAuswahl.setEnabled(true);
 		raucherAuswahl.setEnabled(true);

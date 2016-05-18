@@ -16,6 +16,7 @@ import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
 
+
 public class PartnervorschlagWidget extends Composite {
 
 	public static final ProvidesKey<TestProfil> KEY_PROVIDER = new ProvidesKey<TestProfil>() {
@@ -35,6 +36,7 @@ public class PartnervorschlagWidget extends Composite {
 		 * eine Tabellenzeile das jeweilige Objekt zurückgegeben wird.
 		 */
 		final SingleSelectionModel<TestProfil> selectionModel = new SingleSelectionModel<TestProfil>(KEY_PROVIDER);
+
 
 		partnervorschlag.setSelectionModel(selectionModel);
 
@@ -56,6 +58,7 @@ public class PartnervorschlagWidget extends Composite {
 				//TODO: Profil als angesehen vermerken.
 			}
 		});
+
 
 		/**
 		 * Erzeugen der einzelnen Spalten und definieren ihrer Inhalte.
@@ -105,10 +108,12 @@ public class PartnervorschlagWidget extends Composite {
 				return object.getAehnlichkeitswert();
 			}
 		};
+
 		// TODO: weitere Spalten wie "raucher" oder "haarfarbe" hinzufügen"
 
+
 		/**
-		 * Hinzufügen der Spalten zur Tabelle, in der Reihenfolge von Links nach
+		 * Hinzufï¿½gen der Spalten zur Tabelle, in der Reihenfolge von Links nach
 		 * Rechts. Definition der Spaltennamen.
 		 */
 		partnervorschlag.addColumn(vnameColumn, "Vorname");
@@ -117,10 +122,12 @@ public class PartnervorschlagWidget extends Composite {
 		partnervorschlag.addColumn(raucherColumn, "Raucher");
 		partnervorschlag.addColumn(haarfarbeColumn, "Haarfarbe");
 		partnervorschlag.addColumn(alterColumn, "Alter");
-		partnervorschlag.addColumn(aehnlichkeitColumn, "Ähnlichkeit");
+		partnervorschlag.addColumn(aehnlichkeitColumn, "ï¿½hnlichkeit");
 
-		// Sortieren des Vectors nach dem Ähnlichkeitswert der Profile (TODO: in
-		// Applikationslogik verschieben?)
+
+	
+		//Sortieren des Vectors nach dem ï¿½hnlichkeitswert der Profile (TODO: in Applikationslogik verschieben?)
+
 		Collections.sort(p, new Comparator<TestProfil>() {
 			public int compare(TestProfil o1, TestProfil o2) {
 				return o1.getAehnlichkeitswert() - o2.getAehnlichkeitswert();
@@ -128,7 +135,7 @@ public class PartnervorschlagWidget extends Composite {
 		});
 
 		/**
-		 * Füllen der Tabellenzeilen mit Werten (TODO)
+		 * Fï¿½llen der Tabellenzeilen mit Werten (TODO)
 		 */
 		partnervorschlag.setRowData(0, p);
 
@@ -143,9 +150,11 @@ public class PartnervorschlagWidget extends Composite {
 
 		initWidget(partnervorschlag);
 
-		/**
-		 * ------------------------------------------------------------------
-		 * TODO: Clickhandler zu Tabellenzeilen hinzufügen um das jeweilige
+
+		
+		/**------------------------------------------------------------------
+		 * TODO: Clickhandler zu Tabellenzeilen hinzufï¿½gen um das jeweilige
+
 		 * Nutzerprofil anzuzeigen.
 		 * 
 		 * TODO: Tabelle scrollbar machen.

@@ -1,5 +1,6 @@
 package de.hdm.itprojekt.client;
 
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

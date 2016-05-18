@@ -5,6 +5,7 @@ import java.util.Vector;
 
 public class Profil extends BusinessObject{
 	
+
 		
 	private static final long serialVersionUID = 1L;
 		private static String[] haarfarbeArray = new String[] {"blond", "rot", "braun", "schwarz"};
@@ -21,6 +22,9 @@ public class Profil extends BusinessObject{
 		private String haarfarbe;
 		private Vector<Suchprofil> suchprofile= new Vector<Suchprofil>();
 		private static int nextId = 0;
+
+	
+
 
 		private final int id;
 

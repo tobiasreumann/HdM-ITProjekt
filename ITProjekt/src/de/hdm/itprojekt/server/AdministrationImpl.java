@@ -1,5 +1,15 @@
 
 package de.hdm.itprojekt.server;
+import com.google.api.server.spi.Client;
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 import java.util.Date;
 
@@ -7,14 +17,12 @@ import de.hdm.itprojekt.shared.Administration;
 import de.hdm.itprojekt.shared.bo.*;
 import de.hdm.itprojekt.server.db.*;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 @SuppressWarnings("serial")
 public class AdministrationImpl extends RemoteServiceServlet implements Administration{
 
 	
-		public static void main(String[] args) {
-		}
+	
 
 		private ProfilMapper profilMapper = null;
 		
@@ -64,7 +72,8 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			this.infoMapper = InfoMapper.infoMapper();
 		
 		}
-		
+	
+
 		@Override
 		public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil rp, Profil vp) throws IllegalArgumentException {
 			return null;
@@ -82,7 +91,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		public Merkzettel merkzettelAnlegen(Profil p) throws IllegalArgumentException{
 			//TODO
 			Merkzettel m = new Merkzettel ();			
-			// vorläufige ID
+			// vorlï¿½ufige ID
 			m.setId(1);
 			
 			return this.merkzettelMapper.anlegen (p);
@@ -106,7 +115,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		@Override
 		public Profil profilAnlegen (String vorname, Date g, String name, String geschlecht, boolean raucher, String haarfarbe, int k, String religion)
 		throws IllegalArgumentException{
-			//Verweis auf Fremndschlüssel fehlt 
+			//Verweis auf Fremndschlï¿½ssel fehlt 
 			Profil p = new Profil ();
 			//TODO
 			
@@ -118,12 +127,18 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			p.setHaarfarbe (haarfarbe);
 			p.setRaucher(raucher);
 			p.setReligion(religion);
-			p.setGeburtsdatum(g);			
+			p.setGeburtsdatum(g);	
+			//TODO
+			//Email muss noch zum setten hin
 			
-			// vorläufige ID gesetzt
+			ServersideSettings.getLogger();
+			ServersideSettings.getLogger().info("Profil " + p.getVorname() +  " p.getName"+ " angelegt");
+			
+			// vorlï¿½ufige ID gesetzt
 			p.setId(1);
 			
 			return this.profilMapper.anlegen (p);
+			
 			 
 				
 		}
@@ -200,11 +215,11 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			this.profilMapper.loeschen(p);
 		}
 		
-		@Override
-		public Profil profilBearbeiten () throws IllegalArgumentException{
+		public Profil profilBearbeiten (Profil p) throws IllegalArgumentException{
 			//TODO
 			return this.profilMapper.bearbeiten();
 		}
+		
 		
 		@Override
 		public Info infoHinzufuegen (String wert, Auswahl a, Beschreibung b) throws IllegalArgumentException{
@@ -275,7 +290,16 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		public Partnervorschlag getPartnervorschlaege (Suchprofil sp) throws IllegalArgumentException{
 			return this.partnervorschlagMapper.getPartnervorschlaege();
 			//TODO
+		
 		}
+
+		@Override
+		public Profil profilBearbeiten() throws IllegalArgumentException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
 
 		
 		/*
