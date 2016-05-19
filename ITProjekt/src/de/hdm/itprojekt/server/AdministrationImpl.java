@@ -83,7 +83,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		
 		@Override
 		public Profil getProfilNachID (int id) throws IllegalArgumentException{
-			return this.profilMapper.getByID(id);
+			return this.profilMapper.getProfilByID(id);
 			//TODO
 		}
 
@@ -189,14 +189,14 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			
 		}
 		
-		@Override
-		public Profil suchprofilAnlegen () throws IllegalArgumentException{
-			Suchprofil sp = new Suchprofil();
-			return this.suchprofilMapper.anlegen (sp);
-
-		}
-		
-		@Override
+//		@Override
+//		public Profil suchprofilAnlegen () throws IllegalArgumentException{
+//			Suchprofil sp = new Suchprofil();
+//			return this.suchprofilMapper.anlegen (sp);
+//
+//		}
+//		
+//		@Override
 		public void suchprofilLoeschen (Suchprofil sp) throws IllegalArgumentException{
 			//TODO
 			this.suchprofilMapper.loeschen(sp);
@@ -215,11 +215,11 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			this.profilMapper.loeschen(p);
 		}
 		
-		public Profil profilBearbeiten (Profil p) throws IllegalArgumentException{
-			//TODO
-			return this.profilMapper.bearbeiten();
-		}
-		
+//		public Profil profilBearbeiten (Profil p) throws IllegalArgumentException{
+//			//TODO
+//			return this.profilMapper.bearbeiten();
+//		}
+//		
 		
 		@Override
 		public Info infoHinzufuegen (String wert, Auswahl a, Beschreibung b) throws IllegalArgumentException{
@@ -268,13 +268,13 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			//TODO
 		}
 		
-		@Override
-		public Suchprofil getSuchprofilNachID (int id) throws IllegalArgumentException{
-			//TODO
-			return this.suchprofilMapper.getByID(id);
-		}
-		
-		@Override
+//		@Override
+//		public Suchprofil getSuchprofilNachID (int id) throws IllegalArgumentException{
+//			//TODO
+//			return this.suchprofilMapper.getSuchprofilByID(id);
+//		}
+//		
+//		@Override
 		public Auswahl AuswahlEigenschaftAnlegen (Eigenschaft e) throws IllegalArgumentException{
 			return this.auswahlMapper.anlegen();
 			//TODO
@@ -295,6 +295,18 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 
 		@Override
 		public Profil profilBearbeiten() throws IllegalArgumentException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Profil suchprofilAnlegen() throws IllegalArgumentException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Suchprofil getSuchprofilNachID(int id) throws IllegalArgumentException {
 			// TODO Auto-generated method stub
 			return null;
 		}

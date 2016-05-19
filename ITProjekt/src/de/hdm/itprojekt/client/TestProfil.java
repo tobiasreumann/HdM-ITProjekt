@@ -24,8 +24,16 @@ public class TestProfil {
 	private String haarfarbe;
 	private Vector<TestSuchprofil> suchprofile= new Vector<TestSuchprofil>();
 	private static int nextId = 0;
-
 	private final int id;
+	private Merkliste merkliste = new Merkliste();
+
+	public Merkliste getMerkliste() {
+		return merkliste;
+	}
+
+	public void setMerkliste(Merkliste merkliste) {
+		this.merkliste = merkliste;
+	}
 
 	public int getId() {
 		return id;
@@ -148,7 +156,8 @@ public class TestProfil {
 		this.id=nextId;
 		nextId++;
 	}
-
+	
+	//Testweise erstelle Profile zur Erprobung der GUI. TODO: löschen
 	public static Vector<TestProfil> getProfile() {
 		Vector<TestProfil> profile = new Vector<TestProfil>();
 		profile.add(new TestProfil("gries","karl", "maennlich", 20, 14, false, 175, "schamanismus"));

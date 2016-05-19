@@ -111,6 +111,7 @@ public class ProfilWidget extends Composite {
 		merkbutton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				//TODO: Profil zur Merkliste hinzuf�gen
+				SuchprofilWidget.urprofil.getMerkliste().zuMerklisteHinzufuegen(temp);
 			}
 		});
 		

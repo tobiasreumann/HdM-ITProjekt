@@ -3,11 +3,16 @@ package de.hdm.itprojekt.client;
 import java.util.Vector;
 
 import com.google.gwt.cell.client.NumberCell;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.view.client.ProvidesKey;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
@@ -20,8 +25,12 @@ public class MerklisteWidget extends Composite {
 			return item == null ? null : item.getId();
 		}
 	};
+	
+	Button profilEntfernen = new Button("Profil von Merkliste entfernen");
 
-	public MerklisteWidget() {
+	public MerklisteWidget( final Vector<TestProfil> merkprofile) {
+		
+		
 		CellTable<TestProfil> merkliste = new CellTable<TestProfil>(KEY_PROVIDER);
 
 		/*
@@ -44,6 +53,15 @@ public class MerklisteWidget extends Composite {
 				DialogBox profilAnzeige = new DialogBox();
 				ProfilWidget profilWidget = new ProfilWidget(gemerktesProfil);
 				profilAnzeige.add(profilWidget);
+				profilAnzeige.add(profilEntfernen);
+				profilEntfernen.addClickHandler(new ClickHandler() {			
+						public void onClick(ClickEvent event) {
+						merkprofile.removeElement(selectionModel.getSelectedObject());
+						
+						RootPanel.get("content").clear();
+						RootPanel.get("content").add(new MerklisteWidget(merkprofile));
+						return;					
+				}});
 				profilAnzeige.setAutoHideEnabled(true);
 				profilAnzeige.center();
 				profilAnzeige.show();
@@ -98,7 +116,7 @@ public class MerklisteWidget extends Composite {
 			return object.getAehnlichkeitswert();
 		}
 	};
-	// TODO: weitere Spalten wie "raucher" oder "haarfarbe" hinzufügen"
+	
 
 	/**
 	 * Hinzufügen der Spalten zur Tabelle, in der Reihenfolge von Links nach

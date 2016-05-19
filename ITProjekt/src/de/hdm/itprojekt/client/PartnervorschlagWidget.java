@@ -25,7 +25,7 @@ public class PartnervorschlagWidget extends Composite {
 			return item == null ? null : item.getId();
 		}
 	};
-
+		
 	public PartnervorschlagWidget(Vector<TestProfil> p) {
 
 		CellTable<TestProfil> partnervorschlag = new CellTable<TestProfil>(KEY_PROVIDER);

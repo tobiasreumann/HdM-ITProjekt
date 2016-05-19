@@ -35,7 +35,7 @@ public class SuchprofilWidget extends Composite {
 	Button partnervorschlaege = new Button("Partnervorschlaege anzeigen");
 
 	// Testweise erstelltes Objekt, wird durch Nutzerprofil ersetzt (TODO)
-	TestProfil urprofil = new TestProfil();
+	public static TestProfil urprofil = new TestProfil();
 
 	public SuchprofilWidget() {
 		neu.setWidth("45px");

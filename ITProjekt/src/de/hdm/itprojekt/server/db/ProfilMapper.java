@@ -81,7 +81,7 @@ public class ProfilMapper {
 				p.setGeburtsdatum(rs.getDate("Geburtsdatum"));
 				p.setGeschlecht(rs.getString("Geschlecht"));
 				p.setHaarfarbe(rs.getString("Haarfarbe"));
-				p.setKoerpergroesse(rs.getInt("Koerpergroesse"));
+				p.setGroesse(rs.getInt("Koerpergroesse"));
 				p.setName(rs.getString("Name"));
 				p.setVorname(rs.getString("Vorname"));
 				p.setReligion(rs.getString("Religion"));
@@ -122,7 +122,7 @@ public class ProfilMapper {
 				p.setGeburtsdatum(rs.getDate("Geburtsdatum"));
 				p.setGeschlecht(rs.getString("Geschlecht"));
 				p.setHaarfarbe(rs.getString("Haarfarbe"));
-				p.setKoerpergroesse(rs.getInt("Koerpergroesse"));
+				p.setGroesse(rs.getInt("Koerpergroesse"));
 				p.setName(rs.getString("Name"));
 				p.setVorname(rs.getString("Vorname"));
 				p.setReligion(rs.getString("Religion"));
@@ -196,7 +196,7 @@ public class ProfilMapper {
 					+ "Vorname='"+p.getVorname()+"'"
 					+ "Geschlecht='"+p.getGeschlecht()+"'"
 					+ "Haarfarbe='"+p.getHaarfarbe()+"'"
-					+ "Koerpergroesse='"+p.getKoerpergroesse()+"'"
+					+ "Koerpergroesse='"+p.getGroesse()+"'"
 					+ "Geburtsdatum='"+p.getGeburtsdatum()+"'"
 					+ "Religion='"+p.getReligion()+"'"
 					+ "WHERE ID="+p.getId());			
