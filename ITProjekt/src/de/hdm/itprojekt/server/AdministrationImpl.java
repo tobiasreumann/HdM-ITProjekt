@@ -113,7 +113,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		
 		@Override
 		public Profil getProfilNachID (int id) throws IllegalArgumentException{
-			return this.profilMapper.getByID(id);
+			return this.profilMapper.getProfilByID(id);
 			//TODO
 		}
 
@@ -252,7 +252,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		
 		public Profil profilBearbeiten (Profil p) throws IllegalArgumentException{
 			//TODO
-			return this.profilMapper.bearbeiten();
+			return this.profilMapper.bearbeiten(p);
 		}
 		
 		
@@ -306,7 +306,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		@Override
 		public Suchprofil getSuchprofilNachID (int id) throws IllegalArgumentException{
 			//TODO
-			return this.suchprofilMapper.getByID(id);
+			return this.suchprofilMapper.getSuchprofilByID(id);
 		}
 		
 		@Override
