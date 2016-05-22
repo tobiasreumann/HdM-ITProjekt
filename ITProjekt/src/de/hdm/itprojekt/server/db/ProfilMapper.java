@@ -71,7 +71,7 @@ public class ProfilMapper {
 			//Statement als Query an die DB schicken
 			ResultSet rs = stmt.executeQuery("SELECCT ID, Name, Vorname"
 											+ "FROM Profile"
-											+ "Where ID = id"
+											+ "Where ID = "+id
 											+ "ORDER BY Nachname");
 			
 			if (rs.next()) {
@@ -102,7 +102,7 @@ public class ProfilMapper {
 	
 	
 	//Profil anhand des Nachnamen ausgeben
-	public Profil getProfilByName(String Name) {
+	public Profil getProfilByName(String name) {
 		//DB Verbindung holen
 		Connection con = DBConnection.connection();
 		
@@ -112,7 +112,7 @@ public class ProfilMapper {
 			//Statement als Query an die DB schicken
 			ResultSet rs = stmt.executeQuery("SELECCT ID, Name, Vorname, Alter..."
 											+ "FROM Profile"
-											+ "Where ID = id"
+											+ "Where Name = "+name
 											+ "ORDER BY Nachname");
 			
 			if (rs.next()) {
@@ -150,7 +150,7 @@ public class ProfilMapper {
 			Statement stmt = con.createStatement();
 			
 			//Aktuell höchsten Primaerschluesselwert identifizieren
-			ResultSet rs = stmt.executeQuery("SELECT MAX ID AS maxid FROM Profile");
+			ResultSet rs = stmt.executeQuery("SELECT MAX ID AS maxid FROM Profil");
 					
 					if (rs.next()) {
 						//Maximaler Wert wird um 1 erhöht
@@ -159,7 +159,19 @@ public class ProfilMapper {
 					stmt = con.createStatement();
 					
 					//Hier erfolgt das Einfügen in die DB
-					stmt.executeUpdate("INSERT INTO Profile (ID, Nachname, Vorname... ");
+					stmt.executeUpdate("INSERT INTO Profil (ID, Name, Vorname, Geschlecht, Religion, Raucher, Haarfarbe, Koerpergroesse, Geburtsdatum)"
+							+ "VALUES ("
+							+p.getId()+", '"
+							+p.getName()+")"
+							+p.getVorname()+")"
+							+p.getGeschlecht()+"', '"
+							+p.getReligion()+"', '"
+							+p.getRaucher()+"', "
+							+p.getHaarfarbe()+", "
+							+p.getKoerpergroesse()+")"
+							+p.getGeburtsdatum()+")"
+							
+							);
 					}
 		} catch (SQLException e2) {
 			e2.printStackTrace();

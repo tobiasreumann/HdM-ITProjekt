@@ -1,5 +1,11 @@
 package de.hdm.itprojekt.server.db;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+
 import de.hdm.itprojekt.shared.bo.Merkzettel;
 import de.hdm.itprojekt.shared.bo.Profil;
 
@@ -25,25 +31,90 @@ public class MerkzettelMapper {
 		return null;
 	}
 
-	public void loeschen(Merkzettel m) {
-		// TODO Auto-generated method stub
+
+	public void hinzufuegen(Profil p, Profil vp) {
+		Connection con = DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			
+			stmt.executeUpdate("INSERT INTO Merkzettel (Vermerktes_Profil_ID, Profil_ID) VALUES ("+p.getId()+", "+vp.getId()+"))");
+			
+//			ResultSet rs = stmt.executeQuery("SELECT Profil_ID FROM Merkzettel WHERE ID = "+p.getId()+")");
+//			
+//			
+//			For (int z, z<)
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+//		return vp;
+	}
+
+	public void entfernen(Profil p, Profil vp) {
+		Connection con = DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			
+			stmt.executeUpdate("DELETE FROM Merkzettel WHERE Vermerktes_Profil_ID = "+vp.getId()+", Profil_ID = "+p.getId()+")");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public void alleEntfernen(Profil p) {
+		Connection con = DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			
+			stmt.executeUpdate("DELETE FROM Merkzettel WHERE ID = "+p.getId()+")");
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
-	public Merkzettel hinzufuegen(Profil rp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public void entfernen(Profil p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public Merkzettel getByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		//Alle Profile ausgeben
+		public Vector<Profil> getProfileFromMerkzettel(Profil p) {
+			Connection con = DBConnection.connection();
+			
+			Vector<Profil> result = new Vector<Profil>();
+			
+			try {
+				Statement stmt = con.createStatement();
+				
+				
+				
+				ResultSet rs = stmt.executeQuery("SELECT Name, Vorname"
+												+ "FROM Merkzettel JOIN Profil"
+												+ "WHERE Profil_ID = "+p.getId()+")");
+				
+				//Für jedes Ergebnis wird ein Profil-Objekt erstellt
+				while (rs.next()) {
+					Profil a = new Profil();
+					a.setId(rs.getInt("ID"));
+					a.setName(rs.getString("Name"));
+					a.setVorname(rs.getString("Vorname"));
+					
+					//Objekte werden in Vector hinzugefügt
+					result.addElement(p);
+					
+				}
+			}
+			catch (SQLException e2) {
+				e2.printStackTrace();
+				return null;
+			}
+			//Ergebnisvektor wird zurückgegeben
+			return result;
+		}
 
 
 
