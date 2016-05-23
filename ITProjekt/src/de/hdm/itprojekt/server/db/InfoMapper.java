@@ -10,7 +10,7 @@ import java.util.Vector;
 
 import de.hdm.itprojekt.shared.bo.Info;
 import de.hdm.itprojekt.shared.bo.Profil;
-import de.hdm.itprojekt.shared.bo.Suchprofil;
+
 
 public class InfoMapper {
 	
@@ -71,22 +71,58 @@ private static InfoMapper infoMapper = null;
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("INSERT INTO Info ()
+			//Aktuell höchsten Primaerschluesselwert identifizieren
+			ResultSet rs = stmt.executeQuery("SELECT MAX ID AS maxid FROM Info");
+					
+					if (rs.next()) {
+						//Maximaler Wert wird um 1 erhöht
+						i.setId(rs.getInt("maxid")+1);
+						
+			stmt = con.createStatement();
 			
+			stmt.executeUpdate("INSERT INTO Info (INFO_ID, Profil_ID) "
+								+ "VALUES ("
+								+ i.getId()+", "
+								+i.getWert()+", "
+								+p.getId()+")");
+					}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		
-		return null;
+		return i;
 	}
 
 	public void loeschen(Info i) {
-		// TODO Auto-generated method stub
 		
+			Connection con = DBConnection.connection();
+			
+			try {
+				Statement stmt = con.createStatement();
+				stmt.executeUpdate("DELETE FROM Info WHERE ID = "+ i.getId());
+			}
+			catch (SQLException e2) {
+				e2.printStackTrace();
+			}
 	}
 
-	public Info bearbeiten() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Info bearbeiten(Info i) {
+		Connection con = DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeQuery("UPDATE Profile SET"
+					+ "ID='"+i.getId()+"'" 
+					+ "Wert='"+i.getWert()+"'"
+					+")");
+		}
+		catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		
+		return i;
 	}
-
 }
