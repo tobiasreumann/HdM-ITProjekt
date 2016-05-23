@@ -203,7 +203,7 @@ public class ProfilMapper {
 		
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeQuery("UPDATE Profile SET"
+			stmt.executeQuery("UPDATE Profil SET"
 					+ "Name='"+p.getName()+"'" 
 					+ "Vorname='"+p.getVorname()+"'"
 					+ "Geschlecht='"+p.getGeschlecht()+"'"

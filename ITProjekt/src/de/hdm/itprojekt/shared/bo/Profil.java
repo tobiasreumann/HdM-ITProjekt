@@ -77,7 +77,8 @@ public class Profil extends BusinessObject{
 		Religion = religion;
 	}
 
-	public boolean isRaucher() {
+	//Von isRaucher auf getRaucher geändert! - Max
+	public boolean getRaucher() {
 		return Raucher;
 	}
 
