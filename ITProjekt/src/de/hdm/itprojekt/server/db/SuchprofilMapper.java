@@ -65,7 +65,7 @@ private static SuchprofilMapper suchprofilMapper = null;
 			
 				Connection con = DBConnection.connection();
 				
-				Vector<Profil> result = new Vector<Profil>();
+				Vector<Suchprofil> result = new Vector<Suchprofil>();
 				
 				try {
 					Statement stmt = con.createStatement();
