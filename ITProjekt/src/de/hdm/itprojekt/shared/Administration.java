@@ -14,7 +14,7 @@ public interface Administration extends RemoteService{
 
 	public void init ()throws IllegalArgumentException;
 	
-	public Profil login(String requestUri);
+	Profil login(String requestUri);
 
 	public Aehnlichkeitsmass berechneAehnlichkeitsmass (Profil rp, Profil vp);
 	
@@ -50,7 +50,7 @@ public interface Administration extends RemoteService{
 	public void profilLoeschen (Profil p)throws IllegalArgumentException;
 	
 
-	public Profil profilBearbeiten ()throws IllegalArgumentException;
+	Profil profilBearbeiten();
 
 
 

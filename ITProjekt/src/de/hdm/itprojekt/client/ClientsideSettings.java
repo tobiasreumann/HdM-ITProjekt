@@ -10,6 +10,7 @@ import de.hdm.itprojekt.shared.AdministrationAsync;
 import de.hdm.itprojekt.shared.CommonSettings;
 import de.hdm.itprojekt.shared.ReportGenerator;
 import de.hdm.itprojekt.shared.ReportGeneratorAsync;
+import de.hdm.itprojekt.shared.bo.Profil;
 
 
 public class ClientsideSettings extends CommonSettings{
@@ -22,6 +23,8 @@ public class ClientsideSettings extends CommonSettings{
 private static AdministrationAsync administration = null;
 
 private static ReportGeneratorAsync reportGenerator = null;
+
+private static Profil currentUser = null;
 
 
 // Name für den Clientseitigen Logger
@@ -73,5 +76,13 @@ public static ReportGeneratorAsync getReportGenerator() {
 
     return reportGenerator;
   }
+
+	public static Profil getCurrentUser() {
+		return currentUser;		
+	}
+	
+	public static void setCurrentUser(Profil p){
+		ClientsideSettings.currentUser = p;
+	}
 
 }

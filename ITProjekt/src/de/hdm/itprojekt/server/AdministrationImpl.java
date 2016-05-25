@@ -64,6 +64,8 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			
 		}
 		
+		private static Profil currentUser = null;
+		
 		@Override
 		public void init() throws IllegalArgumentException {
 			
@@ -126,7 +128,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		public Merkzettel merkzettelAnlegen(Profil p) throws IllegalArgumentException{
 			//TODO
 			Merkzettel m = new Merkzettel ();			
-			// vorläufige ID
+			// vorlï¿½ufige ID
 			m.setId(1);
 			
 			return this.merkzettelMapper.anlegen (p);
@@ -168,9 +170,10 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 			//TODO
 			//Email muss noch zum setten hin
 			
-			ServersideSettings.getLogger();
 			// vorlï¿½ufige ID gesetzt
 			p.setId(1);
+			ClientsideSettings.setCurrentUser(p);
+			ClientsideSettings.getLogger().info("Nutzer " + p.getVorname() + " " + p.getName() + " wurde erstellt.");
 			
 			return this.profilMapper.anlegen (p);
 			
@@ -343,7 +346,7 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 
 		
 		/*
-		 * 
+		 * TODO
 		 * 
 		 * Login Methode
 		 * 

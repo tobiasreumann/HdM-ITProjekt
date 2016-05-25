@@ -1,10 +1,16 @@
 package de.hdm.itprojekt.client;
 
 
+
+
+import java.util.logging.Logger;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -12,16 +18,16 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import de.hdm.itprojekt.shared.Administration;
+import de.hdm.itprojekt.shared.AdministrationAsync;
+import de.hdm.itprojekt.shared.bo.Profil;
+import de.hdm.itprojekt.client.ClientsideSettings;
+
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class ITProjekt implements EntryPoint {
 
-	/**
-	 * Create a remote service proxy to talk to the server-side Greeting
-	 * service.
-	 */
-	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
 	/**
 	 * Menüleiste wird als Widget erstellt.
@@ -59,13 +65,92 @@ public class ITProjekt implements EntryPoint {
 	/**
 	 * This is the entry point method.
 	 */
+	
+	
+	  private Profil loginInfo = null;
+	  private VerticalPanel loginPanel = new VerticalPanel();
+	  private Label loginLabel = new Label(
+	      "Please sign in to your Google Account to access the StockWatcher application.");
+	  private Anchor signInLink = new Anchor("Sign In");
+	  
+	  Logger logger = ClientsideSettings.getLogger();
+	
+	
+	  // Klasse LoginCallback
+		class LoginCallback implements AsyncCallback<Profil> {
+
+			public LoginCallback(){	
+			}
+	
+			@Override
+			public void onFailure(Throwable caught) {
+				ClientsideSettings.getLogger().severe("Bitte versuchen Sie sich erneut einzuloggen!");
+				
+			}
+
+			@Override
+			public void onSuccess(Profil result) {
+				if (result.isLoggedIn() && !result.getIsCreated()) {
+					
+					ClientsideSettings.setCurrentUser(result);
+//					profilAnlegen(); TODO
+					ClientsideSettings.getLogger().info("Profil für " + result.getVorname() + " erstellt!");
+				} else if(result.isLoggedIn() && result.getIsCreated()){
+					ClientsideSettings.setCurrentUser(result);
+//					loadProfil(); TODO
+					ClientsideSettings.getLogger().info("Dein Profil wird geladen!");
+				} else {
+				    signInLink.setHref(result.getLoginUrl());
+				    loginPanel.add(loginLabel);
+				    loginPanel.add(signInLink);
+//				    RootPanel.get("nav").clear();
+//				    RootPanel.get("content").clear();
+				    RootPanel.get("content").add(loginPanel);
+				}
+				
+			}
+			
+		}
+	  
+	  
+	  
+	
 
 	public void onModuleLoad() {
 		
+		AdministrationAsync administration = ClientsideSettings.getAdministration();
+		
+		administration.login(GWT.getHostPageBaseURL() + "ITProjekt.html", new LoginCallback());
+		
+	
+		
+		
+		
+
+		
+//		// Check login status using login service.
+//	    AdministrationAsync loginService = GWT.create(Administration.class);
+//	    loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<Profil>() {
+//	      public void onFailure(Throwable error) {
+//	      }
+//
+//	      public void onSuccess(Profil result) {
+//	        loginInfo = result;
+//	        if(loginInfo.isLoggedIn()) {
+//	        	homeButton.click();
+//	        } else {
+//	          loadLogin();
+//	        }
+//	      }
+//	    });
+//	  
+
+
 		
 
 		// Fügt die Menüleiste hinzu
 		VerticalPanel hpanel = new VerticalPanel();
+		RootPanel.get("nav").clear();
 		RootPanel.get("nav").add(hpanel);
 		hpanel.add(menuWidget());
 		
@@ -77,7 +162,7 @@ public class ITProjekt implements EntryPoint {
 		profilButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				
-				//Testweise erstelltes Profil TODO: l�schen.
+				//Testweise erstelltes Profil TODO: l�schen.
 				final TestProfil testProfil= new TestProfil("king", "fa", "maennlich", 35, 14, false, 175, "rastafari");
 				
 				// Reinigt den Bereich Content und fügt das Profil hinzu
@@ -101,7 +186,7 @@ public class ITProjekt implements EntryPoint {
 			public void onClick(ClickEvent event) {
 
 				// Reinigt den Bereich Content und fügt das Profil hinzu
-				Label profilLabel = new Label("Die Partnervorschl�ge:");
+				Label profilLabel = new Label("Die Partnervorschl�ge:");
 
 				RootPanel.get("contentHeader").clear();
 				RootPanel.get("contentHeader").add(profilLabel);

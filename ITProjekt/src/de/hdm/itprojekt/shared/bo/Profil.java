@@ -34,6 +34,8 @@ public class Profil extends BusinessObject{
 	  
 	private String emailAddress;
 	
+	private Boolean isCreated = false;
+	
 	
 	public Profil(){
 	}
@@ -172,7 +174,7 @@ public class Profil extends BusinessObject{
 //			profile.add(new Profil("karlson","kaaaarl", "maennlich", 50, 77, false, 191, "griechisch-orthodox"));
 //			profile.add(new Profil("siffi","joel", "maennlich", 97, 100, true, 210, "pastafari"));
 //			profile.add(new Profil("spax","max", "weiblich", 15, 10, false, 162, "atheist"));
-//			profile.add(new Profil("lauch","goerg", "maennlich", 55, 57, true, 176, "jüdisch"));
+//			profile.add(new Profil("lauch","goerg", "maennlich", 55, 57, true, 176, "jï¿½disch"));
 //			return profile;
 //		}
 //
@@ -282,6 +284,14 @@ public class Profil extends BusinessObject{
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
+	}
+
+	public Boolean getIsCreated() {
+		return isCreated;
+	}
+
+	public void setIsCreated(Boolean isCreated) {
+		this.isCreated = isCreated;
 	}
 	
 	
