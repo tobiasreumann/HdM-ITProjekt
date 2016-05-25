@@ -8,6 +8,7 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import de.hdm.itprojekt.client.ClientsideSettings;
 import de.hdm.itprojekt.client.TestInfo;
 import de.hdm.itprojekt.client.TestProfil;
 import de.hdm.itprojekt.server.db.AehnlichkeitsmassMapper;
@@ -91,12 +92,16 @@ public class AdministrationImpl extends RemoteServiceServlet implements Administ
 		 public Profil login(String requestUri) {
 			    UserService userService = UserServiceFactory.getUserService();
 			    User user = userService.getCurrentUser();
+			    
 			    Profil loginInfo = new Profil();
 
 			    if (user != null) {
+			    	//Profil bestehendesProfil = this.profilMapper.getProfilByEmail(user.getEmail());
+			    
 			      loginInfo.setLoggedIn(true);
 			      loginInfo.setEmailAddress(user.getEmail());
 			      loginInfo.setLogoutUrl(userService.createLogoutURL(requestUri));
+			      ClientsideSettings.getLogger().severe("test");
 			    } else {
 			      loginInfo.setLoggedIn(false);
 			      loginInfo.setLoginUrl(userService.createLoginURL(requestUri));
