@@ -60,7 +60,7 @@ public interface AdministrationAsync {
 			boolean raucher, String haarfarbe, int k, String religion,
 			AsyncCallback<Profil> callback);
 
-	void profilBearbeiten(Profil p, AsyncCallback<Profil> callback);
+	void profilBearbeiten(AsyncCallback<Profil> callback);
 
 	void suchprofilAnlegen(AsyncCallback<Profil> callback);
 
@@ -78,6 +78,9 @@ public interface AdministrationAsync {
 	void suchprofilLoeschen(Suchprofil sp, AsyncCallback<Void> callback);
 
 	void zuMerkzettelHinzufuegen(Profil p, AsyncCallback<Merkzettel> callback);
+		
+	//falss ein Fehler hier ist, s. gwtproject.org
+	void login(String requestUri, AsyncCallback<Profil> callback);
 	
 
 }

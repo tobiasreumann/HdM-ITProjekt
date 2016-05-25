@@ -73,6 +73,10 @@ public class ProfilWidget extends Composite {
 		initWidget(profilWidgetPanel);
 	}
 	
+	/*
+	 * Konstruktor für die Betrachtung von fremdem Nutzerprofilen.
+	 * Das erzeugte ProfilWidget soll das jeweilige Profil unveränderlich anzeigen, aber die Möglichkeit bieten dieses über einen Button zur Merkliste des Nutzers hinzuzufügen.
+	 */
 	public ProfilWidget(Vector<TestProfil> v) {
 		final TestProfil temp = v.firstElement();
 		
@@ -98,8 +102,10 @@ public class ProfilWidget extends Composite {
 		haarAuswahl.setPixelSize(150, 30);
 		geschlechtAuswahl.setPixelSize(150, 30);
 		raucherAuswahl.setPixelSize(150, 30);
+		merkbutton.setPixelSize(270, 30);
 
 		profilWidgetPanel.add(profilGrid);
+		profilWidgetPanel.add(merkbutton);
 		
 
 		merkbutton.addClickHandler(new ClickHandler() {
